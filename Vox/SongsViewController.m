@@ -8,6 +8,8 @@
 
 #import "SongsViewController.h"
 #import "SongCell.h"
+#import "Artist.h"
+#import "Song.h"
 
 @interface SongsViewController ()
 
@@ -47,6 +49,32 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if (!self.fetchedResultsController.fetchedObjects.count)
+    {
+        Artist *artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.managedObjectContext];
+        artist.name = @"Aerosmith";
+        
+        Song *song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
+        song.title = @"Last Child";
+        song.lyrics = @"Lyrics";
+        song.artist = artist;
+        
+        Song *anotherSong = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
+        anotherSong.title = @"Toys In The Attic";
+        anotherSong.lyrics = @"Lyrics";
+        anotherSong.artist = artist;
+        
+        NSError *error = nil;
+        
+        if (![self.managedObjectContext save:&error])
+            NSLog(@"Couldn't save placeholder data. %@, %@", error, error.userInfo);
+    }
 }
 
 #pragma mark - UITableView Helper
