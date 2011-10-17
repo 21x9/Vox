@@ -23,11 +23,11 @@
 		4D62891E144BD83700E66BD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4D628920144BD83700E66BD7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D628922144BD83700E66BD7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4D628926144BD83700E66BD7 /* Vox-Info.plist */ = {isa = PBXFileReference; path = "Vox-Info.plist"; sourceTree = "<group>"; };
+		4D628926144BD83700E66BD7 /* Vox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Vox-Info.plist"; sourceTree = "<group>"; };
 		4D628928144BD83700E66BD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D62892A144BD83700E66BD7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4D62892C144BD83700E66BD7 /* Vox-Prefix.pch */ = {isa = PBXFileReference; path = "Vox-Prefix.pch"; sourceTree = "<group>"; };
-		4D62892D144BD83700E66BD7 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		4D62892C144BD83700E66BD7 /* Vox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vox-Prefix.pch"; sourceTree = "<group>"; };
+		4D62892D144BD83700E66BD7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D62892E144BD83700E66BD7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4D628931144BD83700E66BD7 /* Vox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vox.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
