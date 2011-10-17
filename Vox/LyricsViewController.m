@@ -75,10 +75,11 @@
 {
     self.songsButton = nil;
     self.toolbar = nil;
-    [self setSongTitleLabel:nil];
-    [self setArtistNameLabel:nil];
-    [self setAlbumArtImageView:nil];
-    [self setLyricsTextView:nil];
+    self.songTitleLabel = nil;
+    self.artistNameLabel = nil;
+    self.albumArtImageView = nil;
+    self.lyricsTextView = nil;
+
     [super viewDidUnload];
 }
 
