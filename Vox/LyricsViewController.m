@@ -13,18 +13,22 @@
 @property (nonatomic, strong) UIBarButtonItem *textOptionsButton;
 @property (nonatomic, strong) UIPopoverController *songsPopover;
 
+- (void)configureUI;
+
 @end
 
 #pragma mark -
 
 @implementation LyricsViewController
 
+@synthesize song;
 @synthesize songsButton;
 @synthesize toolbar;
 
 @synthesize textOptionsButton;
 @synthesize songsPopover;
 
+#pragma mark - Getters
 - (UIBarButtonItem *)textOptionsButton
 {
     if (!textOptionsButton)
@@ -33,6 +37,24 @@
     return textOptionsButton;
 }
 
+#pragma mark - Setters
+- (void)setSong:(Song *)aSong
+{
+    if (song == aSong)
+        return;
+    
+    song = aSong;
+    [self configureUI];
+    [self.songsPopover dismissPopoverAnimated:YES];
+}
+
+#pragma mark - View Configuration Helpers
+- (void)configureUI
+{
+    //
+}
+
+#pragma mark - View Lifecycle
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
@@ -68,11 +90,5 @@ static UIBarButtonItem *flexibleSpace = nil;
     
     self.songsPopover = nil;
 }
-
-- (void)splitViewController:(UISplitViewController *)svc popoverController:(UIPopoverController *)pc willPresentViewController:(UIViewController *)aViewController
-{
-    //
-}
-
 
 @end

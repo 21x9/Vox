@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Song;
+
 @interface LyricsViewController : UIViewController <UISplitViewControllerDelegate>
 
+@property (strong, nonatomic) Song *song;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *songsButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 

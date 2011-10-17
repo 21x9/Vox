@@ -10,10 +10,12 @@
 #import "SongCell.h"
 #import "Artist.h"
 #import "Song.h"
+#import "LyricsViewController.h"
 
 @interface SongsViewController ()
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) LyricsViewController *lyricsViewController;
 
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath;
 
@@ -26,6 +28,7 @@
 @synthesize managedObjectContext;
 
 @synthesize fetchedResultsController;
+@synthesize lyricsViewController;
 
 #pragma mark - Getters
 - (NSFetchedResultsController *)fetchedResultsController
@@ -43,6 +46,14 @@
     }
     
     return fetchedResultsController;
+}
+
+- (LyricsViewController *)lyricsViewController
+{
+    if (!lyricsViewController)
+        lyricsViewController = (LyricsViewController *)[self.splitViewController.viewControllers lastObject];
+    
+    return lyricsViewController;
 }
 
 #pragma mark - View Lifecycle
@@ -100,6 +111,12 @@
     [self configureCell:cell forIndexPath:indexPath];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
