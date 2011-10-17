@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SongsViewController : UITableViewController
+@interface SongsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

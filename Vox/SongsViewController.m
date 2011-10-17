@@ -7,76 +7,71 @@
 //
 
 #import "SongsViewController.h"
+#import "SongCell.h"
+
+@interface SongsViewController ()
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+- (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+#pragma mark -
 
 @implementation SongsViewController
 
 @synthesize managedObjectContext;
 
-#pragma mark - View Lifecycle
+@synthesize fetchedResultsController;
 
+#pragma mark - Getters
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (!fetchedResultsController)
+    {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Song"];
+        fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"SongsCache"];
+        fetchedResultsController.delegate = self;
+        
+        NSError *error = nil;
+        if (![fetchedResultsController performFetch:&error])
+            NSLog(@"Couldn't perform fetch. %@, %@", error, error.userInfo);
+    }
+    
+    return fetchedResultsController;
+}
+
+#pragma mark - View Lifecycle
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableView Helper
+- (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath
+{
+    cell.song = [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
 
+#pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell"];    
-    
-    
+    SongCell *cell = (SongCell *)[tableView dequeueReusableCellWithIdentifier:@"SongCell"];    
+    [self configureCell:cell forIndexPath:indexPath];
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 @end
