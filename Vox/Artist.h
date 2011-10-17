@@ -7,16 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
 
 @interface Artist : NSManagedObject
 
-@property (nonatomic, retain) UNKNOWN_TYPE name;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSSet *songs;
-@end
-
-@interface Artist (CoreDataGeneratedAccessors)
 
 - (void)addSongsObject:(NSManagedObject *)value;
 - (void)removeSongsObject:(NSManagedObject *)value;

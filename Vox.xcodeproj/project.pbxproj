@@ -20,6 +20,7 @@
 		4D628943144C0BA300E66BD7 /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628942144C0BA300E66BD7 /* LyricsViewController.m */; };
 		4D628946144C114600E66BD7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628945144C114600E66BD7 /* Artist.m */; };
 		4D628949144C114600E66BD7 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628948144C114600E66BD7 /* Song.m */; };
+		4D62894C144C11EA00E66BD7 /* SongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D62894B144C11EA00E66BD7 /* SongCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		4D628945144C114600E66BD7 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
 		4D628947144C114600E66BD7 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		4D628948144C114600E66BD7 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		4D62894A144C11EA00E66BD7 /* SongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongCell.h; sourceTree = "<group>"; };
+		4D62894B144C11EA00E66BD7 /* SongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				4D62893F144C0AFC00E66BD7 /* SongsViewController.m */,
 				4D628941144C0BA300E66BD7 /* LyricsViewController.h */,
 				4D628942144C0BA300E66BD7 /* LyricsViewController.m */,
+				4D62894A144C11EA00E66BD7 /* SongCell.h */,
+				4D62894B144C11EA00E66BD7 /* SongCell.m */,
 			);
 			path = Vox;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				4D628943144C0BA300E66BD7 /* LyricsViewController.m in Sources */,
 				4D628946144C114600E66BD7 /* Artist.m in Sources */,
 				4D628949144C114600E66BD7 /* Song.m in Sources */,
+				4D62894C144C11EA00E66BD7 /* SongCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

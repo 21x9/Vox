@@ -9,11 +9,11 @@
 #import "Song.h"
 #import "Artist.h"
 
-
 @implementation Song
 
 @dynamic title;
 @dynamic lyrics;
+@dynamic albumArt;
 @dynamic artist;
 
 @end

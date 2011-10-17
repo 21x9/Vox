@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
 @class Artist;
 
 @interface Song : NSManagedObject
 
-@property (nonatomic, retain) UNKNOWN_TYPE title;
-@property (nonatomic, retain) UNKNOWN_TYPE lyrics;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *lyrics;
+@property (nonatomic, retain) NSData *albumArt;
 @property (nonatomic, retain) Artist *artist;
 
 @end

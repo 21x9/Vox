@@ -8,7 +8,6 @@
 
 #import "Artist.h"
 
-
 @implementation Artist
 
 @dynamic name;
