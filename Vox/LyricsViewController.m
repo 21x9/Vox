@@ -7,6 +7,8 @@
 //
 
 #import "LyricsViewController.h"
+#import "Song.h"
+#import "Artist.h"
 
 @interface LyricsViewController ()
 
@@ -24,6 +26,10 @@
 @synthesize song;
 @synthesize songsButton;
 @synthesize toolbar;
+@synthesize songTitleLabel;
+@synthesize artistNameLabel;
+@synthesize albumArtImageView;
+@synthesize lyricsTextView;
 
 @synthesize textOptionsButton;
 @synthesize songsPopover;
@@ -51,7 +57,12 @@
 #pragma mark - View Configuration Helpers
 - (void)configureUI
 {
-    //
+    if (self.song.albumArt)
+        self.albumArtImageView.image = [UIImage imageWithData:self.song.albumArt];
+    
+    self.songTitleLabel.text = self.song.title;
+    self.artistNameLabel.text = self.song.artist.name;
+    self.lyricsTextView.text = self.song.lyrics;
 }
 
 #pragma mark - View Lifecycle
@@ -64,6 +75,10 @@
 {
     self.songsButton = nil;
     self.toolbar = nil;
+    [self setSongTitleLabel:nil];
+    [self setArtistNameLabel:nil];
+    [self setAlbumArtImageView:nil];
+    [self setLyricsTextView:nil];
     [super viewDidUnload];
 }
 

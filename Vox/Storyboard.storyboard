@@ -31,11 +31,40 @@
                                 <color key="shadowColor" red="0.90196078431372551" green="0.90588235294117647" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spaceman" lineBreakMode="tailTruncation" minimumFontSize="10" id="u8H-of-krj">
+                                <rect key="frame" x="151" y="93" width="597" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Killers" lineBreakMode="tailTruncation" minimumFontSize="10" id="vdA-wm-gVj">
+                                <rect key="frame" x="151" y="130" width="597" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AlbumPlaceholder.png" id="Ci2-BC-EhN">
+                                <rect key="frame" x="20" y="68" width="110" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="HIr-WH-UnA">
+                                <rect key="frame" x="0.0" y="203" width="768" height="801"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="albumArtImageView" destination="Ci2-BC-EhN" id="8iG-vm-LKJ"/>
+                        <outlet property="artistNameLabel" destination="vdA-wm-gVj" id="u22-k3-zgu"/>
+                        <outlet property="lyricsTextView" destination="HIr-WH-UnA" id="fEQ-of-VjA"/>
+                        <outlet property="songTitleLabel" destination="u8H-of-krj" id="a3w-X4-mDt"/>
                         <outlet property="songsButton" destination="LMd-w5-B1J" id="GNI-HI-yqI"/>
                         <outlet property="toolbar" destination="hhI-vp-11e" id="Snt-3S-JHA"/>
                     </connections>
@@ -117,10 +146,17 @@
             <point key="canvasLocation" x="-53" y="-171"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AlbumPlaceholder.png" width="90" height="90"/>
+    </resources>
     <classes>
         <class className="LyricsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LyricsViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="artistNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lyricsTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="songTitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="songsButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>

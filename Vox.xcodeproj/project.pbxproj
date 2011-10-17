@@ -21,6 +21,8 @@
 		4D628946144C114600E66BD7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628945144C114600E66BD7 /* Artist.m */; };
 		4D628949144C114600E66BD7 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628948144C114600E66BD7 /* Song.m */; };
 		4D62894C144C11EA00E66BD7 /* SongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D62894B144C11EA00E66BD7 /* SongCell.m */; };
+		4D628953144C220800E66BD7 /* AlbumPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D628951144C220800E66BD7 /* AlbumPlaceholder.png */; };
+		4D628954144C220800E66BD7 /* TextSizeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D628952144C220800E66BD7 /* TextSizeButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		4D628948144C114600E66BD7 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		4D62894A144C11EA00E66BD7 /* SongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongCell.h; sourceTree = "<group>"; };
 		4D62894B144C11EA00E66BD7 /* SongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongCell.m; sourceTree = "<group>"; };
+		4D628951144C220800E66BD7 /* AlbumPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumPlaceholder.png; sourceTree = "<group>"; };
+		4D628952144C220800E66BD7 /* TextSizeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextSizeButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 		4D628924144BD83700E66BD7 /* Vox */ = {
 			isa = PBXGroup;
 			children = (
+				4D628951144C220800E66BD7 /* AlbumPlaceholder.png */,
+				4D628952144C220800E66BD7 /* TextSizeButton.png */,
 				4D62892D144BD83700E66BD7 /* AppDelegate.h */,
 				4D62892E144BD83700E66BD7 /* AppDelegate.m */,
 				4D628930144BD83700E66BD7 /* Vox.xcdatamodeld */,
@@ -178,6 +184,8 @@
 			files = (
 				4D628929144BD83700E66BD7 /* InfoPlist.strings in Resources */,
 				4D62893D144C0A1000E66BD7 /* Storyboard.storyboard in Resources */,
+				4D628953144C220800E66BD7 /* AlbumPlaceholder.png in Resources */,
+				4D628954144C220800E66BD7 /* TextSizeButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
