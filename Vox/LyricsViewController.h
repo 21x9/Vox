@@ -10,4 +10,7 @@
 
 @interface LyricsViewController : UIViewController <UISplitViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *songsButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
 @end
