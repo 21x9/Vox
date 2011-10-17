@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11C74" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Pdr-II-Hh9">
+    <dependencies>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="Fd8-gb-LZy">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z43-SQ-Fxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="EYH-0a-dbx" customClass="LyricsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9JS-16-eqi">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="929" y="437"/>
+        </scene>
+        <scene sceneID="9OW-UE-1NZ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HdW-o5-SzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="8S3-oe-gPt" customClass="SongsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="c0r-7j-jQy">
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" id="eqV-Cn-hPv">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8S3-oe-gPt" id="xcq-99-9UK"/>
+                            <outlet property="delegate" destination="8S3-oe-gPt" id="sQp-Zk-H1s"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Songs" id="dmZ-Hk-WOX"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1463" y="-640"/>
+        </scene>
+        <scene sceneID="QsP-g1-bWu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Lx-ER-JJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="k07-Ro-hou" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="h7J-sm-u8L">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8S3-oe-gPt" kind="relationship" relationship="rootViewController" id="kzZ-uP-mcK"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="929" y="-640"/>
+        </scene>
+        <scene sceneID="p0d-Zb-sxG">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2jG-fr-Mnc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <splitViewController id="Pdr-II-Hh9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="k07-Ro-hou" kind="relationship" relationship="masterViewController" id="XGF-6N-Si0"/>
+                        <segue destination="EYH-0a-dbx" kind="relationship" relationship="detailViewController" id="4oa-FS-2ny"/>
+                    </connections>
+                </splitViewController>
+            </objects>
+            <point key="canvasLocation" x="-53" y="-171"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="LyricsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LyricsViewController.h"/>
+        </class>
+        <class className="SongsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SongsViewController.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

@@ -15,6 +15,9 @@
 		4D62892B144BD83700E66BD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D62892A144BD83700E66BD7 /* main.m */; };
 		4D62892F144BD83700E66BD7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D62892E144BD83700E66BD7 /* AppDelegate.m */; };
 		4D628932144BD83700E66BD7 /* Vox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D628930144BD83700E66BD7 /* Vox.xcdatamodeld */; };
+		4D62893D144C0A1000E66BD7 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D62893C144C0A1000E66BD7 /* Storyboard.storyboard */; };
+		4D628940144C0AFC00E66BD7 /* SongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D62893F144C0AFC00E66BD7 /* SongsViewController.m */; };
+		4D628943144C0BA300E66BD7 /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628942144C0BA300E66BD7 /* LyricsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,11 @@
 		4D62892D144BD83700E66BD7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D62892E144BD83700E66BD7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4D628931144BD83700E66BD7 /* Vox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vox.xcdatamodel; sourceTree = "<group>"; };
+		4D62893C144C0A1000E66BD7 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		4D62893E144C0AFC00E66BD7 /* SongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsViewController.h; sourceTree = "<group>"; };
+		4D62893F144C0AFC00E66BD7 /* SongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsViewController.m; sourceTree = "<group>"; };
+		4D628941144C0BA300E66BD7 /* LyricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsViewController.h; sourceTree = "<group>"; };
+		4D628942144C0BA300E66BD7 /* LyricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,11 @@
 				4D62892E144BD83700E66BD7 /* AppDelegate.m */,
 				4D628930144BD83700E66BD7 /* Vox.xcdatamodeld */,
 				4D628925144BD83700E66BD7 /* Supporting Files */,
+				4D62893C144C0A1000E66BD7 /* Storyboard.storyboard */,
+				4D62893E144C0AFC00E66BD7 /* SongsViewController.h */,
+				4D62893F144C0AFC00E66BD7 /* SongsViewController.m */,
+				4D628941144C0BA300E66BD7 /* LyricsViewController.h */,
+				4D628942144C0BA300E66BD7 /* LyricsViewController.m */,
 			);
 			path = Vox;
 			sourceTree = "<group>";
@@ -149,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D628929144BD83700E66BD7 /* InfoPlist.strings in Resources */,
+				4D62893D144C0A1000E66BD7 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +176,8 @@
 				4D62892B144BD83700E66BD7 /* main.m in Sources */,
 				4D62892F144BD83700E66BD7 /* AppDelegate.m in Sources */,
 				4D628932144BD83700E66BD7 /* Vox.xcdatamodeld in Sources */,
+				4D628940144C0AFC00E66BD7 /* SongsViewController.m in Sources */,
+				4D628943144C0BA300E66BD7 /* LyricsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
