@@ -18,6 +18,8 @@
 		4D62893D144C0A1000E66BD7 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D62893C144C0A1000E66BD7 /* Storyboard.storyboard */; };
 		4D628940144C0AFC00E66BD7 /* SongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D62893F144C0AFC00E66BD7 /* SongsViewController.m */; };
 		4D628943144C0BA300E66BD7 /* LyricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628942144C0BA300E66BD7 /* LyricsViewController.m */; };
+		4D628946144C114600E66BD7 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628945144C114600E66BD7 /* Artist.m */; };
+		4D628949144C114600E66BD7 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628948144C114600E66BD7 /* Song.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,10 @@
 		4D62893F144C0AFC00E66BD7 /* SongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsViewController.m; sourceTree = "<group>"; };
 		4D628941144C0BA300E66BD7 /* LyricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsViewController.h; sourceTree = "<group>"; };
 		4D628942144C0BA300E66BD7 /* LyricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsViewController.m; sourceTree = "<group>"; };
+		4D628944144C114600E66BD7 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
+		4D628945144C114600E66BD7 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
+		4D628947144C114600E66BD7 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		4D628948144C114600E66BD7 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,10 @@
 				4D62892D144BD83700E66BD7 /* AppDelegate.h */,
 				4D62892E144BD83700E66BD7 /* AppDelegate.m */,
 				4D628930144BD83700E66BD7 /* Vox.xcdatamodeld */,
+				4D628947144C114600E66BD7 /* Song.h */,
+				4D628948144C114600E66BD7 /* Song.m */,
+				4D628944144C114600E66BD7 /* Artist.h */,
+				4D628945144C114600E66BD7 /* Artist.m */,
 				4D628925144BD83700E66BD7 /* Supporting Files */,
 				4D62893C144C0A1000E66BD7 /* Storyboard.storyboard */,
 				4D62893E144C0AFC00E66BD7 /* SongsViewController.h */,
@@ -178,6 +188,8 @@
 				4D628932144BD83700E66BD7 /* Vox.xcdatamodeld in Sources */,
 				4D628940144C0AFC00E66BD7 /* SongsViewController.m in Sources */,
 				4D628943144C0BA300E66BD7 /* LyricsViewController.m in Sources */,
+				4D628946144C114600E66BD7 /* Artist.m in Sources */,
+				4D628949144C114600E66BD7 /* Song.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
