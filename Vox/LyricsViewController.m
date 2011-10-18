@@ -13,8 +13,6 @@
 @interface LyricsViewController ()
 
 @property (nonatomic, strong) UIBarButtonItem *textOptionsButton;
-@property (nonatomic, strong) UIPopoverController *songsPopover;
-@property (nonatomic, strong) NSArray *toolbarItems;
 
 - (void)configureUI;
 
@@ -30,10 +28,9 @@
 @synthesize artistNameLabel;
 @synthesize albumArtImageView;
 @synthesize lyricsTextView;
+@synthesize flexibleSpace;
 
 @synthesize textOptionsButton;
-@synthesize songsPopover;
-@synthesize toolbarItems;
 
 #pragma mark - Getters
 - (UIBarButtonItem *)textOptionsButton
@@ -49,7 +46,6 @@
 {
     song = aSong;
     [self configureUI];
-    [self.songsPopover dismissPopoverAnimated:YES];
 }
 
 #pragma mark - View Configuration Helpers
@@ -69,12 +65,6 @@
 	return YES;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self.toolbar setItems:self.toolbarItems animated:YES];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
@@ -87,6 +77,7 @@
     self.artistNameLabel = nil;
     self.albumArtImageView = nil;
     self.lyricsTextView = nil;
+    self.flexibleSpace = nil;
     
     [super viewDidUnload];
 }
@@ -98,33 +89,9 @@
 }
 
 #pragma mark - UISplitViewControllerDelegate Helpers
-static UIBarButtonItem *flexibleSpace = nil;
-
-- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
 {
-    if (!flexibleSpace)
-        flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    barButtonItem.title = NSLocalizedString(@"Songs", @"Songs");
-    
-    NSArray *items = [NSArray arrayWithObjects:barButtonItem, flexibleSpace, self.textOptionsButton, nil];
-    
-    if (!self.view)
-        self.toolbarItems = items;
-    else
-        [self.toolbar setItems:items animated:YES];
-    
-    self.songsPopover = pc;
-}
-
-- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    if (!flexibleSpace)
-        flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    [self.toolbar setItems:[NSArray arrayWithObjects:flexibleSpace, self.textOptionsButton, nil] animated:YES];
-    
-    self.songsPopover = nil;
+    return NO;
 }
 
 @end

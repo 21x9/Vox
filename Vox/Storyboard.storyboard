@@ -136,7 +136,9 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QLv-xC-zfL">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rcA-bH-y2Q"/>
+                                </items>
                             </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lyrics" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="6w7-PC-alh">
                                 <rect key="frame" x="126" y="8" width="517" height="28"/>
@@ -182,6 +184,7 @@
                     <connections>
                         <outlet property="albumArtImageView" destination="U7n-Tr-Lei" id="3zr-VP-X7w"/>
                         <outlet property="artistNameLabel" destination="wj9-dQ-7eI" id="8FS-AR-xFp"/>
+                        <outlet property="flexibleSpace" destination="rcA-bH-y2Q" id="Ioz-p4-YUe"/>
                         <outlet property="lyricsTextView" destination="F2j-gn-boz" id="5n4-37-zAx"/>
                         <outlet property="songTitleLabel" destination="Pyq-UU-Gjv" id="Iwy-oV-flw"/>
                         <outlet property="toolbar" destination="QLv-xC-zfL" id="SFv-vw-1eA"/>
@@ -252,6 +255,7 @@
             <relationships>
                 <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="artistNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="flexibleSpace" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="lyricsTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="songTitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
