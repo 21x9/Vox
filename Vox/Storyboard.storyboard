@@ -8,43 +8,11 @@
         <scene sceneID="Fd8-gb-LZy">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z43-SQ-Fxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="EYH-0a-dbx" customClass="LyricsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditSongViewController" id="EYH-0a-dbx" customClass="EditSongViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9JS-16-eqi">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hhI-vp-11e">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <barButtonItem title="Songs" id="LMd-w5-B1J"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="KQl-s5-Jrx"/>
-                                </items>
-                            </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lyrics" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="09h-l7-1SC">
-                                <rect key="frame" x="126" y="8" width="517" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" red="0.44313725490196076" green="0.47058823529411764" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.90196078431372551" green="0.90588235294117647" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
-                                <size key="shadowOffset" width="0.0" height="1"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spaceman" lineBreakMode="tailTruncation" minimumFontSize="10" id="u8H-of-krj">
-                                <rect key="frame" x="151" y="93" width="597" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Killers" lineBreakMode="tailTruncation" minimumFontSize="10" id="vdA-wm-gVj">
-                                <rect key="frame" x="151" y="130" width="597" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AlbumPlaceholder.png" id="Ci2-BC-EhN">
                                 <rect key="frame" x="20" y="68" width="110" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -56,21 +24,50 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" id="Zop-HK-cxZ">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="New Song" id="WtU-rc-tkc">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mRn-Ob-W5t">
+                                            <connections>
+                                                <action selector="cancel:" destination="EYH-0a-dbx" id="giI-LB-kIw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bhP-iR-MFz">
+                                            <connections>
+                                                <action selector="save:" destination="EYH-0a-dbx" id="DDa-3Q-f9i"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Song Title" minimumFontSize="17" id="pD4-Fs-eho">
+                                <rect key="frame" x="151" y="93" width="597" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Artist" minimumFontSize="17" id="bhY-gO-iXL">
+                                <rect key="frame" x="151" y="130" width="597" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="albumArtImageView" destination="Ci2-BC-EhN" id="8iG-vm-LKJ"/>
-                        <outlet property="artistNameLabel" destination="vdA-wm-gVj" id="u22-k3-zgu"/>
-                        <outlet property="lyricsTextView" destination="HIr-WH-UnA" id="fEQ-of-VjA"/>
-                        <outlet property="songTitleLabel" destination="u8H-of-krj" id="a3w-X4-mDt"/>
-                        <outlet property="songsButton" destination="LMd-w5-B1J" id="GNI-HI-yqI"/>
-                        <outlet property="toolbar" destination="hhI-vp-11e" id="Snt-3S-JHA"/>
+                        <outlet property="albumArtImageView" destination="Ci2-BC-EhN" id="xuu-4h-O1P"/>
+                        <outlet property="artistTextField" destination="bhY-gO-iXL" id="BsX-MU-v2k"/>
+                        <outlet property="lyricsTextView" destination="HIr-WH-UnA" id="SDV-aY-VhO"/>
+                        <outlet property="titleTextField" destination="pD4-Fs-eho" id="ugr-Ho-612"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="929" y="437"/>
+            <point key="canvasLocation" x="2725" y="435"/>
         </scene>
         <scene sceneID="9OW-UE-1NZ">
             <objects>
@@ -81,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" textLabel="Pt1-AI-uOG" detailTextLabel="v5X-YX-pWL" style="IBUITableViewCellStyleSubtitle" id="eqV-Cn-hPv" customClass="SongCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" textLabel="Pt1-AI-uOG" detailTextLabel="v5X-YX-pWL" imageView="c3y-dY-bMR" style="IBUITableViewCellStyleSubtitle" id="eqV-Cn-hPv" customClass="SongCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -89,19 +86,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pt1-AI-uOG">
-                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                            <rect key="frame" x="53" y="2" width="38" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v5X-YX-pWL">
-                                            <rect key="frame" x="10" y="24" width="47" height="18"/>
+                                            <rect key="frame" x="53" y="24" width="47" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AlbumPlaceholder.png" id="c3y-dY-bMR">
+                                            <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -113,10 +114,95 @@
                             <outlet property="delegate" destination="8S3-oe-gPt" id="sQp-Zk-H1s"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Songs" id="dmZ-Hk-WOX"/>
+                    <navigationItem key="navigationItem" title="Songs" id="dmZ-Hk-WOX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="R5f-Sc-BK7">
+                            <connections>
+                                <action selector="addSong" destination="8S3-oe-gPt" id="3p8-tL-7O2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1463" y="-640"/>
+        </scene>
+        <scene sceneID="sN8-VQ-fhz">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGQ-vn-eGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="LyricsViewController" id="7C3-Dw-QxA" customClass="LyricsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lNO-SG-NW9">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QLv-xC-zfL">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lyrics" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="6w7-PC-alh">
+                                <rect key="frame" x="126" y="8" width="517" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.4431372549" green="0.47058823529999999" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.90196078430000004" green="0.90588235289999997" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spaceman" lineBreakMode="tailTruncation" minimumFontSize="10" id="Pyq-UU-Gjv">
+                                <rect key="frame" x="151" y="93" width="597" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The Killers" lineBreakMode="tailTruncation" minimumFontSize="10" id="wj9-dQ-7eI">
+                                <rect key="frame" x="151" y="130" width="597" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AlbumPlaceholder.png" id="U7n-Tr-Lei">
+                                <rect key="frame" x="20" y="68" width="110" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="F2j-gn-boz">
+                                <rect key="frame" x="0.0" y="203" width="768" height="801"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="9br-0e-sFB"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="albumArtImageView" destination="U7n-Tr-Lei" id="3zr-VP-X7w"/>
+                        <outlet property="artistNameLabel" destination="wj9-dQ-7eI" id="8FS-AR-xFp"/>
+                        <outlet property="lyricsTextView" destination="F2j-gn-boz" id="5n4-37-zAx"/>
+                        <outlet property="songTitleLabel" destination="Pyq-UU-Gjv" id="Iwy-oV-flw"/>
+                        <outlet property="toolbar" destination="QLv-xC-zfL" id="SFv-vw-1eA"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1841" y="435"/>
+        </scene>
+        <scene sceneID="3kd-7p-AQs">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zb0-8a-PT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="76x-mg-qRy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="skP-TF-V17">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7C3-Dw-QxA" kind="relationship" relationship="rootViewController" id="9SM-6l-Mh6"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="929" y="435"/>
         </scene>
         <scene sceneID="QsP-g1-bWu">
             <objects>
@@ -139,7 +225,7 @@
                     <toolbarItems/>
                     <connections>
                         <segue destination="k07-Ro-hou" kind="relationship" relationship="masterViewController" id="XGF-6N-Si0"/>
-                        <segue destination="EYH-0a-dbx" kind="relationship" relationship="detailViewController" id="4oa-FS-2ny"/>
+                        <segue destination="76x-mg-qRy" kind="relationship" relationship="detailViewController" id="URp-03-Xic"/>
                     </connections>
                 </splitViewController>
             </objects>
@@ -150,6 +236,17 @@
         <image name="AlbumPlaceholder.png" width="90" height="90"/>
     </resources>
     <classes>
+        <class className="EditSongViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSongViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="save:"/>
+                <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="artistTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lyricsTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
         <class className="LyricsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LyricsViewController.h"/>
             <relationships>
@@ -157,7 +254,6 @@
                 <relationship kind="outlet" name="artistNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="lyricsTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="songTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="songsButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
@@ -166,6 +262,9 @@
         </class>
         <class className="SongsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SongsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addSong"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

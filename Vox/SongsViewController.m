@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) LyricsViewController *lyricsViewController;
+@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath;
 
@@ -29,6 +30,7 @@
 
 @synthesize fetchedResultsController;
 @synthesize lyricsViewController;
+@synthesize selectedIndexPath;
 
 #pragma mark - Getters
 - (NSFetchedResultsController *)fetchedResultsController
@@ -51,7 +53,10 @@
 - (LyricsViewController *)lyricsViewController
 {
     if (!lyricsViewController)
-        lyricsViewController = (LyricsViewController *)[self.splitViewController.viewControllers lastObject];
+    {
+        UINavigationController *nav = (UINavigationController *)[self.splitViewController.viewControllers lastObject];
+        lyricsViewController = (LyricsViewController *)nav.topViewController;
+    }
     
     return lyricsViewController;
 }
@@ -86,6 +91,49 @@
         if (![self.managedObjectContext save:&error])
             NSLog(@"Couldn't save placeholder data. %@, %@", error, error.userInfo);
     }
+}
+
+#pragma mark - Add Song
+- (void)addSong
+{
+    EditSongViewController *esvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSongViewController"];
+    esvc.song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
+    esvc.delegate = self;
+    [self.lyricsViewController.navigationController pushViewController:esvc animated:NO];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"EditSong"])
+    {
+        EditSongViewController *esvc = segue.destinationViewController;
+        esvc.view.frame = self.lyricsViewController.view.frame;
+        esvc.song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
+        esvc.delegate = self;
+        return;
+    }
+}
+
+#pragma mark - EditSongViewControllerDelegate
+- (void)editSongViewController:(EditSongViewController *)controller didBeginEditingSong:(Song *)song
+{
+    //[self.tableView selectRowAtIndexPath:[self.fetchedResultsController indexPathForObject:song] animated:NO scrollPosition:UITableViewScrollPositionTop];
+}
+
+- (void)editSongViewController:(EditSongViewController *)controller didSaveSong:(Song *)song successfully:(BOOL)success
+{
+    [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
+    
+    if (!success)
+    {
+        [self.managedObjectContext deleteObject:song];
+        return;
+    }
+    
+    NSError *error = nil;
+    
+    if (![self.managedObjectContext save:&error])
+        NSLog(@"Could not save context %@, %@", error, error.userInfo);
 }
 
 #pragma mark - UITableView Helper
@@ -130,11 +178,11 @@
     switch(type)
     {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
     }
 }
@@ -144,11 +192,12 @@
     switch(type)
     {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            self.selectedIndexPath = newIndexPath;
             break;
             
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeUpdate:
@@ -156,8 +205,9 @@
             break;
             
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            self.selectedIndexPath = newIndexPath;
             break;
     }
 }
@@ -165,6 +215,8 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+    [self.tableView selectRowAtIndexPath:self.selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+    self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
 }
 
 @end

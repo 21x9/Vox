@@ -23,6 +23,8 @@
 		4D62894C144C11EA00E66BD7 /* SongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D62894B144C11EA00E66BD7 /* SongCell.m */; };
 		4D628953144C220800E66BD7 /* AlbumPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D628951144C220800E66BD7 /* AlbumPlaceholder.png */; };
 		4D628954144C220800E66BD7 /* TextSizeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D628952144C220800E66BD7 /* TextSizeButton.png */; };
+		4D628957144C382A00E66BD7 /* EditSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628956144C382A00E66BD7 /* EditSongViewController.m */; };
+		4D62895A144C3A8900E66BD7 /* NSManagedObject+IsNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,10 @@
 		4D62894B144C11EA00E66BD7 /* SongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongCell.m; sourceTree = "<group>"; };
 		4D628951144C220800E66BD7 /* AlbumPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumPlaceholder.png; sourceTree = "<group>"; };
 		4D628952144C220800E66BD7 /* TextSizeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextSizeButton.png; sourceTree = "<group>"; };
+		4D628955144C382A00E66BD7 /* EditSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSongViewController.h; sourceTree = "<group>"; };
+		4D628956144C382A00E66BD7 /* EditSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSongViewController.m; sourceTree = "<group>"; };
+		4D628958144C3A8900E66BD7 /* NSManagedObject+IsNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+IsNew.h"; sourceTree = "<group>"; };
+		4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+IsNew.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,10 @@
 				4D628942144C0BA300E66BD7 /* LyricsViewController.m */,
 				4D62894A144C11EA00E66BD7 /* SongCell.h */,
 				4D62894B144C11EA00E66BD7 /* SongCell.m */,
+				4D628955144C382A00E66BD7 /* EditSongViewController.h */,
+				4D628956144C382A00E66BD7 /* EditSongViewController.m */,
+				4D628958144C3A8900E66BD7 /* NSManagedObject+IsNew.h */,
+				4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */,
 			);
 			path = Vox;
 			sourceTree = "<group>";
@@ -204,6 +214,8 @@
 				4D628946144C114600E66BD7 /* Artist.m in Sources */,
 				4D628949144C114600E66BD7 /* Song.m in Sources */,
 				4D62894C144C11EA00E66BD7 /* SongCell.m in Sources */,
+				4D628957144C382A00E66BD7 /* EditSongViewController.m in Sources */,
+				4D62895A144C3A8900E66BD7 /* NSManagedObject+IsNew.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

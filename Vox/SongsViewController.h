@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditSongViewController.h"
 
-@interface SongsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface SongsViewController : UITableViewController <NSFetchedResultsControllerDelegate, EditSongViewControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+- (IBAction)addSong;
 
 @end

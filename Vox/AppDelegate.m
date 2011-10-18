@@ -20,12 +20,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     UISplitViewController *svc = (UISplitViewController *)self.window.rootViewController;
+    
     UINavigationController *nav = [svc.viewControllers objectAtIndex:0];
     SongsViewController *songsVC = (SongsViewController *)nav.topViewController;
     songsVC.managedObjectContext = self.managedObjectContext;
-    LyricsViewController *lyricsVC = [svc.viewControllers lastObject];
+    
+    UINavigationController *lyricsNav = (UINavigationController *)[svc.viewControllers lastObject];
+    LyricsViewController *lyricsVC = (LyricsViewController *)lyricsNav.topViewController;
     svc.delegate = lyricsVC;
+    
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

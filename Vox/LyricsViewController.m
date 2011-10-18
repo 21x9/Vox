@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UIBarButtonItem *textOptionsButton;
 @property (nonatomic, strong) UIPopoverController *songsPopover;
+@property (nonatomic, strong) NSArray *toolbarItems;
 
 - (void)configureUI;
 
@@ -24,15 +25,16 @@
 @implementation LyricsViewController
 
 @synthesize song;
-@synthesize songsButton;
 @synthesize toolbar;
 @synthesize songTitleLabel;
 @synthesize artistNameLabel;
 @synthesize albumArtImageView;
 @synthesize lyricsTextView;
+@synthesize delegate;
 
 @synthesize textOptionsButton;
 @synthesize songsPopover;
+@synthesize toolbarItems;
 
 #pragma mark - Getters
 - (UIBarButtonItem *)textOptionsButton
@@ -46,9 +48,6 @@
 #pragma mark - Setters
 - (void)setSong:(Song *)aSong
 {
-    if (song == aSong)
-        return;
-    
     song = aSong;
     [self configureUI];
     [self.songsPopover dismissPopoverAnimated:YES];
@@ -71,16 +70,32 @@
 	return YES;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.toolbar setItems:self.toolbarItems animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewDidUnload
 {
-    self.songsButton = nil;
     self.toolbar = nil;
     self.songTitleLabel = nil;
     self.artistNameLabel = nil;
     self.albumArtImageView = nil;
     self.lyricsTextView = nil;
-
+    
     [super viewDidUnload];
+}
+
+#pragma mark - Text Options
+- (void)showTextOptions
+{
+    //
 }
 
 #pragma mark - UISplitViewControllerDelegate Helpers
@@ -92,7 +107,13 @@ static UIBarButtonItem *flexibleSpace = nil;
         flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     barButtonItem.title = NSLocalizedString(@"Songs", @"Songs");
-    self.toolbar.items = [NSArray arrayWithObjects:barButtonItem, flexibleSpace, self.textOptionsButton, nil];
+    
+    NSArray *items = [NSArray arrayWithObjects:barButtonItem, flexibleSpace, self.textOptionsButton, nil];
+    
+    if (!self.view)
+        self.toolbarItems = items;
+    else
+        [self.toolbar setItems:items animated:YES];
     
     self.songsPopover = pc;
 }
@@ -102,7 +123,7 @@ static UIBarButtonItem *flexibleSpace = nil;
     if (!flexibleSpace)
         flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    self.toolbar.items = [NSArray arrayWithObjects:flexibleSpace, self.textOptionsButton, nil];
+    [self.toolbar setItems:[NSArray arrayWithObjects:flexibleSpace, self.textOptionsButton, nil] animated:YES];
     
     self.songsPopover = nil;
 }

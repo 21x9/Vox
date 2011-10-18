@@ -7,17 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditSongViewController.h"
+
+@protocol LyricsViewControllerDelegate;
 
 @class Song;
 
 @interface LyricsViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) Song *song;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *songsButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UILabel *songTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *albumArtImageView;
 @property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
+@property (weak, nonatomic) id <LyricsViewControllerDelegate> delegate;
+
+@end
+
+@protocol LyricsViewControllerDelegate <NSObject>
+
+- (void)lyricsViewController:(LyricsViewController *)controller didSaveSong:(NSManagedObject *)song;
 
 @end
