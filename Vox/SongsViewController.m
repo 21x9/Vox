@@ -174,6 +174,7 @@
             break;
             
         case NSFetchedResultsChangeDelete:
+            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
@@ -182,6 +183,7 @@
             break;
             
         case NSFetchedResultsChangeMove:
+            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             self.selectedIndexPath = newIndexPath;
@@ -192,7 +194,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-    [self.tableView selectRowAtIndexPath:self.selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView selectRowAtIndexPath:self.selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
     self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
 }
 
