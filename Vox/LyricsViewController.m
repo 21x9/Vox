@@ -30,7 +30,6 @@
 @synthesize artistNameLabel;
 @synthesize albumArtImageView;
 @synthesize lyricsTextView;
-@synthesize delegate;
 
 @synthesize textOptionsButton;
 @synthesize songsPopover;
