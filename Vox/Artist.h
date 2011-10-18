@@ -13,9 +13,4 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSSet *songs;
 
-- (void)addSongsObject:(NSManagedObject *)value;
-- (void)removeSongsObject:(NSManagedObject *)value;
-- (void)addSongs:(NSSet *)values;
-- (void)removeSongs:(NSSet *)values;
-
 @end

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol EditSongViewControllerDelegate;
-
 @class Song;
+
+typedef void (^EditSongViewControllerSaveBlock)(Song *song);
+typedef void (^EditSongViewControllerCancelBlock)();
 
 @interface EditSongViewController : UIViewController
 
@@ -18,17 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumArtImageView;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *artistTextField;
-@property (weak, nonatomic) id <EditSongViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
+@property (copy, nonatomic) EditSongViewControllerSaveBlock saveBlock;
+@property (copy, nonatomic) EditSongViewControllerCancelBlock cancelBlock;
 
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
-
-@end
-
-@protocol EditSongViewControllerDelegate <NSObject>
-
-- (void)editSongViewController:(EditSongViewController *)controller didBeginEditingSong:(Song *)song;
-- (void)editSongViewController:(EditSongViewController *)controller didSaveSong:(Song *)song successfully:(BOOL)success;
 
 @end

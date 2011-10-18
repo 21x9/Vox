@@ -16,8 +16,9 @@
 @synthesize albumArtImageView;
 @synthesize titleTextField;
 @synthesize artistTextField;
-@synthesize delegate;
 @synthesize lyricsTextView;
+@synthesize saveBlock;
+@synthesize cancelBlock;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -25,19 +26,13 @@
     [self.titleTextField becomeFirstResponder];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.delegate editSongViewController:self didBeginEditingSong:self.song];
-}
-
 - (void)viewDidUnload
 {
     self.albumArtImageView = nil;
     self.titleTextField = nil;
     self.artistTextField = nil;
+    self.lyricsTextView = nil;
     
-    [self setLyricsTextView:nil];
     [super viewDidUnload];
 }
 
@@ -52,12 +47,13 @@
     self.song.artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
     self.song.artist.name = self.artistTextField.text;
     self.song.lyrics = self.lyricsTextView.text;
-    [self.delegate editSongViewController:self didSaveSong:self.song successfully:YES];
+    self.saveBlock(self.song);
 }
 
 - (IBAction)cancel:(id)sender
 {
-    [self.delegate editSongViewController:self didSaveSong:self.song successfully:NO];
+    [self.song.managedObjectContext deleteObject:self.song];
+    self.cancelBlock();
 }
 
 @end

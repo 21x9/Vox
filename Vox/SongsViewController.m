@@ -11,6 +11,7 @@
 #import "Artist.h"
 #import "Song.h"
 #import "LyricsViewController.h"
+#import "EditSongViewController.h"
 
 @interface SongsViewController ()
 
@@ -98,42 +99,18 @@
 {
     EditSongViewController *esvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSongViewController"];
     esvc.song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
-    esvc.delegate = self;
+    esvc.saveBlock = ^(Song *song) {
+        [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
+        NSError *error = nil;
+        
+        if (![self.managedObjectContext save:&error])
+            NSLog(@"Couldn't save song. %@, %@", error, error.userInfo);
+    };
+    esvc.cancelBlock = ^{
+        [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
+    };
+    
     [self.lyricsViewController.navigationController pushViewController:esvc animated:NO];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"EditSong"])
-    {
-        EditSongViewController *esvc = segue.destinationViewController;
-        esvc.view.frame = self.lyricsViewController.view.frame;
-        esvc.song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
-        esvc.delegate = self;
-        return;
-    }
-}
-
-#pragma mark - EditSongViewControllerDelegate
-- (void)editSongViewController:(EditSongViewController *)controller didBeginEditingSong:(Song *)song
-{
-    //[self.tableView selectRowAtIndexPath:[self.fetchedResultsController indexPathForObject:song] animated:NO scrollPosition:UITableViewScrollPositionTop];
-}
-
-- (void)editSongViewController:(EditSongViewController *)controller didSaveSong:(Song *)song successfully:(BOOL)success
-{
-    [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
-    
-    if (!success)
-    {
-        [self.managedObjectContext deleteObject:song];
-        return;
-    }
-    
-    NSError *error = nil;
-    
-    if (![self.managedObjectContext save:&error])
-        NSLog(@"Could not save context %@, %@", error, error.userInfo);
 }
 
 #pragma mark - UITableView Helper
