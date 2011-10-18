@@ -20,6 +20,12 @@
 @synthesize saveBlock;
 @synthesize cancelBlock;
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
