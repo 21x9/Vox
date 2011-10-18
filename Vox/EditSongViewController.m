@@ -10,6 +10,14 @@
 #import "Song.h"
 #import "Artist.h"
 
+@interface EditSongViewController ()
+
+- (void)updateSaveButtonStatus;
+
+@end
+
+#pragma mark -
+
 @implementation EditSongViewController
 
 @synthesize song;
@@ -19,11 +27,13 @@
 @synthesize lyricsTextView;
 @synthesize saveBlock;
 @synthesize cancelBlock;
+@synthesize saveButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
+    [self updateSaveButtonStatus];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -38,6 +48,7 @@
     self.titleTextField = nil;
     self.artistTextField = nil;
     self.lyricsTextView = nil;
+    self.saveButton = nil;
     
     [super viewDidUnload];
 }
@@ -62,6 +73,26 @@
     [self.view endEditing:NO];
     [self.song.managedObjectContext deleteObject:self.song];
     self.cancelBlock();
+}
+
+- (IBAction)textFieldEditingChanged
+{
+    [self updateSaveButtonStatus];
+}
+
+- (void)updateSaveButtonStatus
+{
+    BOOL enabled = YES;
+    
+    if (!self.titleTextField.text.length || !self.artistTextField.text.length || !self.lyricsTextView.hasText)
+        enabled = NO;
+    
+    self.saveButton.enabled = enabled;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    [self updateSaveButtonStatus];
 }
 
 @end

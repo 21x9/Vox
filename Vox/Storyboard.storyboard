@@ -19,6 +19,9 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="EYH-0a-dbx" id="X8R-Am-Djx"/>
+                                </connections>
                             </textView>
                             <navigationBar contentMode="scaleToFill" id="Zop-HK-cxZ">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -43,12 +46,18 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged" destination="EYH-0a-dbx" eventType="editingChanged" id="P20-bB-vLV"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Artist" minimumFontSize="17" id="bhY-gO-iXL">
                                 <rect key="frame" x="20" y="99" width="728" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="textFieldEditingChanged" destination="EYH-0a-dbx" eventType="editingChanged" id="fnh-mS-0eN"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -58,6 +67,7 @@
                     <connections>
                         <outlet property="artistTextField" destination="bhY-gO-iXL" id="BsX-MU-v2k"/>
                         <outlet property="lyricsTextView" destination="HIr-WH-UnA" id="SDV-aY-VhO"/>
+                        <outlet property="saveButton" destination="bhP-iR-MFz" id="Jxf-ap-l4c"/>
                         <outlet property="titleTextField" destination="pD4-Fs-eho" id="ugr-Ho-612"/>
                     </connections>
                 </viewController>
@@ -237,9 +247,11 @@
             <relationships>
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="textFieldEditingChanged"/>
                 <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="artistTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lyricsTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
             </relationships>
         </class>

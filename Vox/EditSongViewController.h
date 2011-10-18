@@ -13,7 +13,7 @@
 typedef void (^EditSongViewControllerSaveBlock)(Song *song);
 typedef void (^EditSongViewControllerCancelBlock)();
 
-@interface EditSongViewController : UIViewController
+@interface EditSongViewController : UIViewController <UITextViewDelegate>
 
 @property (strong, nonatomic) Song *song;
 @property (weak, nonatomic) IBOutlet UIImageView *albumArtImageView;
@@ -22,8 +22,10 @@ typedef void (^EditSongViewControllerCancelBlock)();
 @property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
 @property (copy, nonatomic) EditSongViewControllerSaveBlock saveBlock;
 @property (copy, nonatomic) EditSongViewControllerCancelBlock cancelBlock;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
+- (IBAction)textFieldEditingChanged;
 
 @end
