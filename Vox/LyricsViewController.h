@@ -11,7 +11,7 @@
 
 @class Song;
 
-@interface LyricsViewController : UIViewController <UISplitViewControllerDelegate>
+@interface LyricsViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) Song *song;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;

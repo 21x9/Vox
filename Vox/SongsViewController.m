@@ -68,6 +68,14 @@
 	return YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (!self.fetchedResultsController.fetchedObjects.count)
+        [self addSong];
+}
+
 #pragma mark - Add Song
 - (void)addSong
 {
