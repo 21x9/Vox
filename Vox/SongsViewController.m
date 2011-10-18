@@ -19,6 +19,8 @@
 @property (strong, nonatomic) LyricsViewController *lyricsViewController;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 
+- (void)addButtonVisible:(BOOL)visible;
+- (void)editButtonVisible:(BOOL)visible;
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -28,6 +30,7 @@
 @implementation SongsViewController
 
 @synthesize managedObjectContext;
+@synthesize addSongButton;
 
 @synthesize fetchedResultsController;
 @synthesize lyricsViewController;
@@ -68,6 +71,12 @@
 	return YES;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -76,12 +85,46 @@
         [self addSong];
 }
 
+- (void)viewDidUnload
+{
+    self.addSongButton = nil;
+    
+    [super viewDidUnload];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    [self addButtonVisible:!editing];
+}
+
+- (void)addButtonVisible:(BOOL)visible
+{
+    if (visible)
+        [self.navigationItem setRightBarButtonItem:self.addSongButton animated:YES];
+    else
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
+}
+
+- (void)editButtonVisible:(BOOL)visible
+{
+    if (visible)
+        [self.navigationItem setLeftBarButtonItem:self.editButtonItem animated:YES];
+    else
+        [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
+
 #pragma mark - Add Song
 - (void)addSong
 {
+    [self addButtonVisible:NO];
+    [self editButtonVisible:NO];
+    
     EditSongViewController *esvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSongViewController"];
     esvc.song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
     esvc.saveBlock = ^(Song *song) {
+        [self addButtonVisible:YES];
+        [self editButtonVisible:YES];
         [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
         NSError *error = nil;
         
@@ -89,6 +132,8 @@
             NSLog(@"Couldn't save song. %@, %@", error, error.userInfo);
     };
     esvc.cancelBlock = ^{
+        [self addButtonVisible:YES];
+        [self editButtonVisible:YES];
         [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
     };
     
@@ -124,6 +169,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle != UITableViewCellEditingStyleDelete)
+        return;
+    
+    [self.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    NSError *error = nil;
+    
+    if (![self.managedObjectContext save:&error])
+        NSLog(@"Could not delete object. %@, %@", error, error.userInfo);
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

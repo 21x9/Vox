@@ -115,12 +115,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Songs" id="dmZ-Hk-WOX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="R5f-Sc-BK7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="PRg-in-71Q">
                             <connections>
-                                <action selector="addSong" destination="8S3-oe-gPt" id="3p8-tL-7O2"/>
+                                <action selector="addSong" destination="8S3-oe-gPt" id="lme-97-YMz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addSongButton" destination="PRg-in-71Q" id="hFW-gv-srf"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1463" y="-640"/>
@@ -268,6 +271,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SongsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addSong"/>
+                <relationship kind="outlet" name="addSongButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
     </classes>
