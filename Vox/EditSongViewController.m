@@ -43,6 +43,7 @@
 
 - (IBAction)save:(id)sender
 {
+    [self.view endEditing:NO];
     self.song.title = self.titleTextField.text;
     self.song.artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
     self.song.artist.name = self.artistTextField.text;
@@ -52,6 +53,7 @@
 
 - (IBAction)cancel:(id)sender
 {
+    [self.view endEditing:NO];
     [self.song.managedObjectContext deleteObject:self.song];
     self.cancelBlock();
 }
