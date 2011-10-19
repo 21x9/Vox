@@ -51,8 +51,12 @@
 #pragma mark - View Configuration Helpers
 - (void)configureUI
 {
-    if (self.song.albumArt)
-        self.albumArtImageView.image = [UIImage imageWithData:self.song.albumArt];
+    if (!self.song)
+    {
+        self.songTitleLabel.text = NSLocalizedString(@"No Song Selected", @"No Song Selected");
+        self.artistNameLabel.text = NSLocalizedString(@"Add or select a song to get started", @"Add or select a song to get started");
+        return;
+    }
     
     self.songTitleLabel.text = self.song.title;
     self.artistNameLabel.text = self.song.artist.name;

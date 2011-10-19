@@ -88,6 +88,8 @@
     
     if (!self.fetchedResultsController.fetchedObjects.count)
         [self addSong];
+    else
+        self.editingSong = NO;
 }
 
 - (void)viewDidUnload
@@ -141,6 +143,8 @@
         
         if (![self.managedObjectContext save:&error])
             NSLog(@"Couldn't save song. %@, %@", error, error.userInfo);
+        
+        [self selectSongAtIndexPath:[self.fetchedResultsController indexPathForObject:song]];
     };
     esvc.cancelBlock = ^{
         self.editingSong = NO;
