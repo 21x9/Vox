@@ -34,6 +34,24 @@
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     [self updateSaveButtonStatus];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserverForName:UIKeyboardWillChangeFrameNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
+        CGRect startingFrame = [[notification.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+        CGRect endingFrame = [[notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        NSTimeInterval duration = [[notification.userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve animationCurve = [[notification.userInfo valueForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        
+        startingFrame = [self.view convertRect:startingFrame fromView:nil];
+        endingFrame = [self.view convertRect:endingFrame fromView:nil];
+                
+        CGRect viewFrame = self.lyricsTextView.frame;
+        viewFrame.size.height = endingFrame.origin.y - viewFrame.origin.y;
+        
+        [UIView animateWithDuration:duration delay:0.0 options:animationCurve animations:^{
+            self.lyricsTextView.frame = viewFrame;
+        } completion:nil];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
