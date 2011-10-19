@@ -235,6 +235,7 @@
             
         case NSFetchedResultsChangeDelete:
             [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+            [self selectSongAtIndexPath:nil];
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             

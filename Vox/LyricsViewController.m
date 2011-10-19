@@ -55,6 +55,7 @@
     {
         self.songTitleLabel.text = NSLocalizedString(@"No Song Selected", @"No Song Selected");
         self.artistNameLabel.text = NSLocalizedString(@"Add or select a song to get started", @"Add or select a song to get started");
+        self.lyricsTextView.text = nil;
         return;
     }
     
