@@ -18,9 +18,12 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) LyricsViewController *lyricsViewController;
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+@property (assign, nonatomic) BOOL editingSong;
 
-- (void)setAddButtonVisible:(BOOL)visible animated:(BOOL)animated;
-- (void)setEditButtonVisible:(BOOL)visible animated:(BOOL)animated;
+- (void)updateLeftBarButtonState;
+- (void)updateRightBarButtonState;
+- (void)updateNavigationItems;
+- (void)selectSongAtIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath;
 
 @end
@@ -35,6 +38,7 @@
 @synthesize fetchedResultsController;
 @synthesize lyricsViewController;
 @synthesize selectedIndexPath;
+@synthesize editingSong;
 
 #pragma mark - Getters
 - (NSFetchedResultsController *)fetchedResultsController
@@ -65,6 +69,13 @@
     return lyricsViewController;
 }
 
+#pragma mark - Setters
+- (void)setEditingSong:(BOOL)editingSongFlag
+{
+    editingSong = editingSongFlag;
+    [self updateNavigationItems];
+}
+
 #pragma mark - View Lifecycle
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -74,12 +85,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     if (!self.fetchedResultsController.fetchedObjects.count)
         [self addSong];
@@ -95,36 +100,42 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    [self setAddButtonVisible:!editing animated:YES];
+    [self updateRightBarButtonState];
 }
 
-- (void)setAddButtonVisible:(BOOL)visible animated:(BOOL)animated
+- (void)updateLeftBarButtonState
 {
-    if (visible)
-        [self.navigationItem setRightBarButtonItem:self.addSongButton animated:animated];
-    else
-        [self.navigationItem setRightBarButtonItem:nil animated:animated];
+    UIBarButtonItem *buttonItem = nil;
+    
+    if (!self.editingSong)
+        buttonItem = self.editButtonItem;
+    
+    [self.navigationItem setLeftBarButtonItem:buttonItem animated:YES];
 }
 
-- (void)setEditButtonVisible:(BOOL)visible animated:(BOOL)animated
+- (void)updateRightBarButtonState
 {
-    if (visible)
-        [self.navigationItem setLeftBarButtonItem:self.editButtonItem animated:animated];
-    else
-        [self.navigationItem setLeftBarButtonItem:nil animated:animated];
+    UIBarButtonItem *buttonItem = nil;
+    
+    if (!self.editing && !self.editingSong)
+        buttonItem = self.addSongButton;
+    
+    [self.navigationItem setRightBarButtonItem:buttonItem animated:YES];
+}
+
+- (void)updateNavigationItems
+{
+    [self updateLeftBarButtonState];
+    [self updateRightBarButtonState];
 }
 
 #pragma mark - Add Song
 - (void)addSong
 {
-    [self setAddButtonVisible:NO animated:NO];
-    [self setEditButtonVisible:NO animated:NO];
-    
     EditSongViewController *esvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSongViewController"];
     esvc.song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
     esvc.saveBlock = ^(Song *song) {
-        [self setAddButtonVisible:YES animated:YES];
-        [self setEditButtonVisible:YES animated:YES];
+        self.editingSong = NO;
         [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
         NSError *error = nil;
         
@@ -132,12 +143,18 @@
             NSLog(@"Couldn't save song. %@, %@", error, error.userInfo);
     };
     esvc.cancelBlock = ^{
-        [self setAddButtonVisible:YES animated:YES];
-        [self setEditButtonVisible:YES animated:YES];
+        self.editingSong = NO;
         [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
     };
     
     [self.lyricsViewController.navigationController pushViewController:esvc animated:NO];
+    self.editingSong = YES;
+}
+
+- (void)selectSongAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+    self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 #pragma mark - UITableView Helper
@@ -233,8 +250,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-    [self.tableView selectRowAtIndexPath:self.selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-    self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
+    [self selectSongAtIndexPath:self.selectedIndexPath];
 }
 
 @end
