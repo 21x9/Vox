@@ -22,6 +22,7 @@
 
 - (void)updateLeftBarButtonState;
 - (void)updateRightBarButtonState;
+- (void)editSong:(Song *)aSong;
 - (void)selectSongAtIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath;
 
@@ -64,6 +65,12 @@
     {
         UINavigationController *nav = (UINavigationController *)[self.splitViewController.viewControllers lastObject];
         lyricsViewController = (LyricsViewController *)nav.topViewController;
+        
+        __weak SongsViewController *weakSelf = self;
+        
+        lyricsViewController.editSongBlock = ^{
+            [weakSelf editSong:[weakSelf.fetchedResultsController objectAtIndexPath:[weakSelf.tableView indexPathForSelectedRow]]];
+        };
     }
     
     return lyricsViewController;
@@ -147,10 +154,10 @@
 }
 
 #pragma mark - Add Song
-- (void)addSong
+- (void)editSong:(Song *)aSong
 {
     EditSongViewController *esvc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditSongViewController"];
-    esvc.song = [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext];
+    esvc.song = aSong;
     esvc.saveBlock = ^(Song *song) {
         self.editingSong = NO;
         [self.lyricsViewController.navigationController popViewControllerAnimated:NO];
@@ -168,6 +175,11 @@
     
     [self.lyricsViewController.navigationController pushViewController:esvc animated:NO];
     self.editingSong = YES;
+}
+
+- (void)addSong
+{
+    [self editSong:[NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.managedObjectContext]];
 }
 
 - (void)selectSongAtIndexPath:(NSIndexPath *)indexPath

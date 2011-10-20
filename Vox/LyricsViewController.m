@@ -29,6 +29,7 @@
 @synthesize albumArtImageView;
 @synthesize lyricsTextView;
 @synthesize flexibleSpace;
+@synthesize editSongBlock;
 
 @synthesize textOptionsButton;
 
@@ -88,10 +89,10 @@
     [super viewDidUnload];
 }
 
-#pragma mark - Text Options
-- (void)showTextOptions
+#pragma mark - Song Editing
+- (IBAction)editSong:(id)sender
 {
-    //
+    self.editSongBlock();
 }
 
 #pragma mark - UISplitViewControllerDelegate Helpers
@@ -99,5 +100,6 @@
 {
     return NO;
 }
+
 
 @end

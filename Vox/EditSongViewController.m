@@ -12,6 +12,7 @@
 
 @interface EditSongViewController ()
 
+- (void)populateUI;
 - (void)updateSaveButtonStatus;
 
 @end
@@ -29,10 +30,12 @@
 @synthesize cancelBlock;
 @synthesize saveButton;
 
+#pragma mark - View Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
+    [self populateUI];
     [self updateSaveButtonStatus];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillChangeFrameNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
@@ -77,6 +80,25 @@
 	return YES;
 }
 
+#pragma mark - UI Helpers
+- (void)populateUI
+{
+    self.titleTextField.text = self.song.title;
+    self.artistTextField.text = self.song.artist.name;
+    self.lyricsTextView.text = self.song.lyrics;
+}
+
+- (void)updateSaveButtonStatus
+{
+    BOOL enabled = YES;
+    
+    if (!self.titleTextField.text.length || !self.artistTextField.text.length || !self.lyricsTextView.hasText)
+        enabled = NO;
+    
+    self.saveButton.enabled = enabled;
+}
+
+#pragma mark - Interface Actions
 - (IBAction)save:(id)sender
 {
     [self.view endEditing:NO];
@@ -90,7 +112,10 @@
 - (IBAction)cancel:(id)sender
 {
     [self.view endEditing:NO];
-    [self.song.managedObjectContext deleteObject:self.song];
+    
+    if (!self.song.title)
+        [self.song.managedObjectContext deleteObject:self.song];
+    
     self.cancelBlock();
 }
 
@@ -99,16 +124,7 @@
     [self updateSaveButtonStatus];
 }
 
-- (void)updateSaveButtonStatus
-{
-    BOOL enabled = YES;
-    
-    if (!self.titleTextField.text.length || !self.artistTextField.text.length || !self.lyricsTextView.hasText)
-        enabled = NO;
-    
-    self.saveButton.enabled = enabled;
-}
-
+#pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView
 {
     [self updateSaveButtonStatus];

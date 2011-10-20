@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "EditSongViewController.h"
 
+typedef void (^LyricsViewControllerEditSongBlock)();
+
 @class Song;
 
 @interface LyricsViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate>
@@ -20,5 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumArtImageView;
 @property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *flexibleSpace;
+@property (copy, nonatomic) LyricsViewControllerEditSongBlock editSongBlock;
+
+- (IBAction)editSong:(id)sender;
 
 @end
