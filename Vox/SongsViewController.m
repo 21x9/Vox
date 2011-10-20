@@ -188,7 +188,12 @@
 - (void)selectSongAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
-    self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if (!song)
+        return;
+    
+    self.lyricsViewController.song = song;
 }
 
 #pragma mark - UITableView Helper
@@ -280,7 +285,6 @@
             
         case NSFetchedResultsChangeDelete:
             [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-            [self selectSongAtIndexPath:nil];
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
@@ -300,7 +304,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-    [self selectSongAtIndexPath:self.selectedIndexPath];
+    //[self selectSongAtIndexPath:self.selectedIndexPath];
 }
 
 @end
