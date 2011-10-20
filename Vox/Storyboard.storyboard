@@ -5,6 +5,44 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
+        <scene sceneID="UXh-h9-W6X">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jfe-bY-rvO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="fIh-nf-SNU" customClass="ArtistsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9we-HC-Omh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtistCell" textLabel="9yJ-xF-dl4" style="IBUITableViewCellStyleDefault" id="eGE-Bc-ErZ">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9yJ-xF-dl4">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fIh-nf-SNU" id="wb8-pz-9P8"/>
+                            <outlet property="delegate" destination="fIh-nf-SNU" id="dQh-tG-JAc"/>
+                        </connections>
+                    </tableView>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="3621" y="521"/>
+        </scene>
         <scene sceneID="Fd8-gb-LZy">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z43-SQ-Fxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -47,16 +85,17 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="textFieldEditingChanged" destination="EYH-0a-dbx" eventType="editingChanged" id="P20-bB-vLV"/>
+                                    <action selector="textFieldEditingChanged:" destination="EYH-0a-dbx" eventType="editingChanged" id="7jT-W1-BmE"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Artist" minimumFontSize="17" id="bhY-gO-iXL">
-                                <rect key="frame" x="20" y="99" width="728" height="31"/>
+                                <rect key="frame" x="20" y="95" width="728" height="31"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="textFieldEditingChanged" destination="EYH-0a-dbx" eventType="editingChanged" id="fnh-mS-0eN"/>
+                                    <action selector="textFieldEditingChanged:" destination="EYH-0a-dbx" eventType="editingChanged" id="tH9-6E-M22"/>
+                                    <outlet property="delegate" destination="EYH-0a-dbx" id="ehJ-zi-PtI"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -69,6 +108,9 @@
                         <outlet property="lyricsTextView" destination="HIr-WH-UnA" id="SDV-aY-VhO"/>
                         <outlet property="saveButton" destination="bhP-iR-MFz" id="Jxf-ap-l4c"/>
                         <outlet property="titleTextField" destination="pD4-Fs-eho" id="ugr-Ho-612"/>
+                        <segue destination="fIh-nf-SNU" kind="popover" identifier="ShowArtists" popoverAnchorView="bhY-gO-iXL" id="NCo-ez-rQ1">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
             </objects>
@@ -248,12 +290,15 @@
         <image name="AlbumPlaceholder.png" width="90" height="90"/>
     </resources>
     <classes>
+        <class className="ArtistsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistsViewController.h"/>
+        </class>
         <class className="EditSongViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSongViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="save:"/>
-                <relationship kind="action" name="textFieldEditingChanged"/>
+                <relationship kind="action" name="textFieldEditingChanged:" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="artistTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="lyricsTextView" candidateClass="PlaceholderTextView"/>

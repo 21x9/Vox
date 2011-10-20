@@ -25,6 +25,7 @@
 		4D628954144C220800E66BD7 /* TextSizeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D628952144C220800E66BD7 /* TextSizeButton.png */; };
 		4D628957144C382A00E66BD7 /* EditSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628956144C382A00E66BD7 /* EditSongViewController.m */; };
 		4D62895A144C3A8900E66BD7 /* NSManagedObject+IsNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */; };
+		4DAB4CA6144FE10E00AD4EAF /* ArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DAB4CA5144FE10E00AD4EAF /* ArtistsViewController.m */; };
 		4DB70C1B144FD2E800C73691 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB70C1A144FD2E700C73691 /* PlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,8 @@
 		4D628956144C382A00E66BD7 /* EditSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSongViewController.m; sourceTree = "<group>"; };
 		4D628958144C3A8900E66BD7 /* NSManagedObject+IsNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+IsNew.h"; sourceTree = "<group>"; };
 		4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+IsNew.m"; sourceTree = "<group>"; };
+		4DAB4CA4144FE10E00AD4EAF /* ArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistsViewController.h; sourceTree = "<group>"; };
+		4DAB4CA5144FE10E00AD4EAF /* ArtistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistsViewController.m; sourceTree = "<group>"; };
 		4DB70C13144F940300C73691 /* Vox 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Vox 2.xcdatamodel"; sourceTree = "<group>"; };
 		4DB70C19144FD2E700C73691 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceholderTextView.h; path = ../PlaceholderTextView.h; sourceTree = "<group>"; };
 		4DB70C1A144FD2E700C73691 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceholderTextView.m; path = ../PlaceholderTextView.m; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				4D628956144C382A00E66BD7 /* EditSongViewController.m */,
 				4D628958144C3A8900E66BD7 /* NSManagedObject+IsNew.h */,
 				4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */,
+				4DAB4CA4144FE10E00AD4EAF /* ArtistsViewController.h */,
+				4DAB4CA5144FE10E00AD4EAF /* ArtistsViewController.m */,
 			);
 			path = Vox;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				4D628957144C382A00E66BD7 /* EditSongViewController.m in Sources */,
 				4D62895A144C3A8900E66BD7 /* NSManagedObject+IsNew.m in Sources */,
 				4DB70C1B144FD2E800C73691 /* PlaceholderTextView.m in Sources */,
+				4DAB4CA6144FE10E00AD4EAF /* ArtistsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

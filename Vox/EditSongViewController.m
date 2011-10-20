@@ -10,8 +10,12 @@
 #import "Song.h"
 #import "Artist.h"
 #import "PlaceholderTextView.h"
+#import "ArtistsViewController.h"
 
 @interface EditSongViewController ()
+
+@property (strong, nonatomic) ArtistsViewController *artistsViewController;
+@property (strong, nonatomic) UIPopoverController *artistsPopover;
 
 - (void)populateUI;
 - (void)updateSaveButtonStatus;
@@ -30,6 +34,9 @@
 @synthesize saveBlock;
 @synthesize cancelBlock;
 @synthesize saveButton;
+
+@synthesize artistsViewController;
+@synthesize artistsPopover;
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
@@ -81,6 +88,27 @@
 	return YES;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if (![segue.identifier isEqualToString:@"ShowArtists"])
+        return;
+    
+    UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
+    self.artistsPopover = popoverSegue.popoverController;
+    self.artistsViewController = (ArtistsViewController *)self.artistsPopover.contentViewController;
+    self.artistsViewController.managedObjectContext = self.song.managedObjectContext;
+    self.artistsViewController.searchFilter = self.artistTextField.text;
+    
+    __weak EditSongViewController *weakSelf = self;
+    
+    self.artistsViewController.selectedArtistBlock = ^(Artist *artist) {
+        weakSelf.song.artist = artist;
+        weakSelf.artistTextField.text = artist.name;
+        [weakSelf.artistsPopover dismissPopoverAnimated:YES];
+        weakSelf.artistsPopover = nil;
+    };
+}
+
 #pragma mark - UI Helpers
 - (void)populateUI
 {
@@ -104,8 +132,13 @@
 {
     [self.view endEditing:NO];
     self.song.title = self.titleTextField.text;
-    self.song.artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
-    self.song.artist.name = self.artistTextField.text;
+    
+    if (!self.song.artist || [self.song.artist.name caseInsensitiveCompare:self.artistTextField.text] != NSOrderedSame)
+    {
+        self.song.artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
+        self.song.artist.name = [self.artistTextField.text capitalizedString];
+    }
+    
     self.song.lyrics = self.lyricsTextView.text;
     self.saveBlock(self.song);
 }
@@ -120,9 +153,32 @@
     self.cancelBlock();
 }
 
-- (IBAction)textFieldEditingChanged
+- (IBAction)textFieldEditingChanged:(UITextField *)sender
 {
     [self updateSaveButtonStatus];
+    
+    if (sender != self.artistTextField)
+        return;
+    
+    if (!self.artistsPopover)
+        [self performSegueWithIdentifier:@"ShowArtists" sender:self];
+    
+    self.artistsViewController.searchFilter = self.artistTextField.text;
+}
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField != self.artistTextField)
+        return;
+    
+    [self performSegueWithIdentifier:@"ShowArtists" sender:nil];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self.artistsPopover dismissPopoverAnimated:YES];
+    self.artistsPopover = nil;
 }
 
 #pragma mark - UITextViewDelegate
