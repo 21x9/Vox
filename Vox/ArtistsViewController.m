@@ -8,6 +8,7 @@
 
 #import "ArtistsViewController.h"
 #import "Artist.h"
+#import "Song.h"
 
 @interface ArtistsViewController ()
 
@@ -95,6 +96,11 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ArtistCell"];
     Artist *artist = [self.filteredArtists objectAtIndex:indexPath.row];
     cell.textLabel.text = artist.name;
+    NSData *albumArt = [[artist.songs anyObject] albumArt];
+    
+    if (albumArt)
+        cell.imageView.image = [UIImage imageWithData:albumArt];
+    
     return cell;
 }
 

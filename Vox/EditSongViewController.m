@@ -139,8 +139,22 @@
     
     if (!self.song.artist || [self.song.artist.name caseInsensitiveCompare:self.artistTextField.text] != NSOrderedSame)
     {
-        self.song.artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
-        self.song.artist.name = [self.artistTextField.text capitalizedString];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Artist"];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name like[cd] %@", self.artistTextField.text];
+        fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+        NSError *error = nil;
+        NSArray *matchingArtists = [self.song.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        if (!matchingArtists)
+            NSLog(@"Couldn't perform fetch request for matching artists. %@, %@", error, error.userInfo);
+        
+        if (!matchingArtists.count)
+        {
+            self.song.artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
+            self.song.artist.name = [self.artistTextField.text capitalizedString];
+        }
+        else
+            self.song.artist = [matchingArtists objectAtIndex:0];
     }
     
     self.song.lyrics = self.lyricsTextView.text;
