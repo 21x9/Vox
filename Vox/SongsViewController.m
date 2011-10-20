@@ -213,7 +213,22 @@
 #pragma mark - UITableView Helper
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
-    cell.song = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if (!song.albumArt)
+    {
+        AlbumArtSearch *search = [[AlbumArtSearch alloc] init];
+        [search searchAlbumArtForSong:song completionBlock:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError *error = nil;
+                
+                if (![self.managedObjectContext save:&error])
+                    NSLog(@"Couldn't save artwork. %@, %@", error, error.userInfo);
+            });
+        }];
+    }
+    
+    cell.song = song;
 }
 
 #pragma mark - UITableViewDataSource
