@@ -53,7 +53,7 @@
 #pragma mark - View Configuration Helpers
 - (void)configureUI
 {
-    if (!self.song)
+    if (!self.song.title)
     {
         self.editSongButton.enabled = NO;
         self.songTitleLabel.text = NSLocalizedString(@"No Song Selected", @"No Song Selected");
@@ -70,6 +70,8 @@
     
     if (self.song.albumArt)
         self.albumArtImageView.image = [UIImage imageWithData:self.song.albumArt];
+    else
+        self.albumArtImageView.image = [UIImage imageNamed:@"AlbumPlaceholder"];
 }
 
 #pragma mark - View Lifecycle
