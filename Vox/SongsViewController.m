@@ -12,6 +12,7 @@
 #import "Song.h"
 #import "LyricsViewController.h"
 #import "EditSongViewController.h"
+#import "AlbumArtSearch.h"
 
 @interface SongsViewController ()
 
@@ -170,6 +171,19 @@
             NSLog(@"Couldn't save song. %@, %@", error, error.userInfo);
         
         [self selectSongAtIndexPath:[self.fetchedResultsController indexPathForObject:song]];
+        
+        if (!song.albumArt)
+        {
+            AlbumArtSearch *search = [[AlbumArtSearch alloc] init];
+            [search searchAlbumArtForSong:song completionBlock:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSError *error = nil;
+                    
+                    if (![self.managedObjectContext save:&error])
+                        NSLog(@"Couldn't save album art for song. %@, %@", error, error.userInfo);
+                });
+            }];
+        }
     };
     esvc.cancelBlock = ^{
         self.editingSong = NO;

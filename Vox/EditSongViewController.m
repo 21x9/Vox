@@ -115,6 +115,10 @@
     self.titleTextField.text = self.song.title;
     self.artistTextField.text = self.song.artist.name;
     self.lyricsTextView.text = self.song.lyrics;
+    self.albumArtImageView.image = [UIImage imageNamed:@"AlbumPlaceholder"];
+    
+    if (self.song.albumArt)
+        self.albumArtImageView.image = [UIImage imageWithData:self.song.albumArt];
 }
 
 - (void)updateSaveButtonStatus

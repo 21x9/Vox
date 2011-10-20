@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1CB76914501A2A00F8F9F0 /* AlbumArtSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CB76814501A2A00F8F9F0 /* AlbumArtSearch.m */; };
 		4D62891D144BD83700E66BD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D62891C144BD83700E66BD7 /* UIKit.framework */; };
 		4D62891F144BD83700E66BD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D62891E144BD83700E66BD7 /* Foundation.framework */; };
 		4D628921144BD83700E66BD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D628920144BD83700E66BD7 /* CoreGraphics.framework */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D1CB76714501A2A00F8F9F0 /* AlbumArtSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumArtSearch.h; sourceTree = "<group>"; };
+		4D1CB76814501A2A00F8F9F0 /* AlbumArtSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumArtSearch.m; sourceTree = "<group>"; };
 		4D628918144BD83700E66BD7 /* Vox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D62891C144BD83700E66BD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D62891E144BD83700E66BD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 				4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */,
 				4DAB4CA4144FE10E00AD4EAF /* ArtistsViewController.h */,
 				4DAB4CA5144FE10E00AD4EAF /* ArtistsViewController.m */,
+				4D1CB76714501A2A00F8F9F0 /* AlbumArtSearch.h */,
+				4D1CB76814501A2A00F8F9F0 /* AlbumArtSearch.m */,
 			);
 			path = Vox;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				4D62895A144C3A8900E66BD7 /* NSManagedObject+IsNew.m in Sources */,
 				4DB70C1B144FD2E800C73691 /* PlaceholderTextView.m in Sources */,
 				4DAB4CA6144FE10E00AD4EAF /* ArtistsViewController.m in Sources */,
+				4D1CB76914501A2A00F8F9F0 /* AlbumArtSearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

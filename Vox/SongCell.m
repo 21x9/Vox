@@ -38,7 +38,10 @@
     
     self.textLabel.text = song.title;
     self.detailTextLabel.text = song.artist.name;
-    self.imageView.image = [UIImage imageWithData:song.albumArt];
+    self.imageView.image = self.placeholderImage;
+    
+    if (song.albumArt)
+        self.imageView.image = [UIImage imageWithData:song.albumArt];
     
     if (!song.title && !song.artist)
     {
