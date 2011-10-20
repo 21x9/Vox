@@ -28,7 +28,7 @@
         }
         
         NSLog(@"%@", JSONData);
-        NSString *imageURLString = [[[[[[JSONData valueForKey:@"results"] valueForKey:@"trackmatches"] valueForKey:@"track"] valueForKey:@"image"] lastObject] valueForKey:@"#text"];
+        NSString *imageURLString = [[[[[[JSONData valueForKey:@"results"] valueForKey:@"trackmatches"] valueForKey:@"track"] valueForKey:@"image"] objectAtIndex:2] valueForKey:@"#text"];
         NSURL *imageURL = [NSURL URLWithString:imageURLString];
         song.albumArt = [NSData dataWithContentsOfURL:imageURL];
         block();
