@@ -23,6 +23,7 @@ typedef void (^LyricsViewControllerEditSongBlock)();
 @property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *flexibleSpace;
 @property (copy, nonatomic) LyricsViewControllerEditSongBlock editSongBlock;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editSongButton;
 
 - (IBAction)editSong:(id)sender;
 

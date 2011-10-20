@@ -30,6 +30,7 @@
 @synthesize lyricsTextView;
 @synthesize flexibleSpace;
 @synthesize editSongBlock;
+@synthesize editSongButton;
 
 @synthesize textOptionsButton;
 
@@ -54,12 +55,14 @@
 {
     if (!self.song)
     {
+        self.editSongButton.enabled = NO;
         self.songTitleLabel.text = NSLocalizedString(@"No Song Selected", @"No Song Selected");
         self.artistNameLabel.text = NSLocalizedString(@"Add or select a song to get started", @"Add or select a song to get started");
         self.lyricsTextView.text = nil;
         return;
     }
     
+    self.editSongButton.enabled = YES;
     self.songTitleLabel.text = self.song.title;
     self.artistNameLabel.text = self.song.artist.name;
     self.lyricsTextView.text = self.song.lyrics;
@@ -85,6 +88,7 @@
     self.albumArtImageView = nil;
     self.lyricsTextView = nil;
     self.flexibleSpace = nil;
+    self.editSongButton = nil;
     
     [super viewDidUnload];
 }

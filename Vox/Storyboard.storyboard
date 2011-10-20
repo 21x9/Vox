@@ -146,7 +146,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="rcA-bH-y2Q"/>
-                                    <barButtonItem title="Edit Song" id="6hl-lR-pVY">
+                                    <barButtonItem enabled="NO" title="Edit Song" id="6hl-lR-pVY">
                                         <connections>
                                             <action selector="editSong:" destination="7C3-Dw-QxA" id="dPG-Xh-qK8"/>
                                         </connections>
@@ -192,6 +192,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="artistNameLabel" destination="wj9-dQ-7eI" id="8FS-AR-xFp"/>
+                        <outlet property="editSongButton" destination="6hl-lR-pVY" id="h2f-A9-inc"/>
                         <outlet property="flexibleSpace" destination="rcA-bH-y2Q" id="Ioz-p4-YUe"/>
                         <outlet property="lyricsTextView" destination="F2j-gn-boz" id="5n4-37-zAx"/>
                         <outlet property="songTitleLabel" destination="Pyq-UU-Gjv" id="Iwy-oV-flw"/>
@@ -266,6 +267,7 @@
                 <relationship kind="action" name="editSong:"/>
                 <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="artistNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="editSongButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="flexibleSpace" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="lyricsTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="songTitleLabel" candidateClass="UILabel"/>

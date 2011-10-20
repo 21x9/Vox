@@ -97,7 +97,10 @@
     if (!self.fetchedResultsController.fetchedObjects.count)
         [self addSong];
     else
+    {
+        self.lyricsViewController.song = nil;
         self.editingSong = NO;
+    }
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillChangeFrameNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
         CGRect startingFrame = [[notification.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
