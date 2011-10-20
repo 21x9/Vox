@@ -8,10 +8,11 @@
         <attribute name="albumArt" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="lyrics" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="uppercaseFirstLetter" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <relationship name="artist" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="songs" inverseEntity="Artist" syncable="YES"/>
     </entity>
     <elements>
         <element name="Artist" positionX="396" positionY="-171" width="128" height="75"/>
-        <element name="Song" positionX="106" positionY="-180" width="128" height="105"/>
+        <element name="Song" positionX="106" positionY="-180" width="128" height="120"/>
     </elements>
 </model>

@@ -57,6 +57,7 @@
 		4D628956144C382A00E66BD7 /* EditSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSongViewController.m; sourceTree = "<group>"; };
 		4D628958144C3A8900E66BD7 /* NSManagedObject+IsNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+IsNew.h"; sourceTree = "<group>"; };
 		4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+IsNew.m"; sourceTree = "<group>"; };
+		4DB70C13144F940300C73691 /* Vox 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Vox 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,9 +330,10 @@
 		4D628930144BD83700E66BD7 /* Vox.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4DB70C13144F940300C73691 /* Vox 2.xcdatamodel */,
 				4D628931144BD83700E66BD7 /* Vox.xcdatamodel */,
 			);
-			currentVersion = 4D628931144BD83700E66BD7 /* Vox.xcdatamodel */;
+			currentVersion = 4DB70C13144F940300C73691 /* Vox 2.xcdatamodel */;
 			path = Vox.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

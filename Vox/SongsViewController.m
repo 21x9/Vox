@@ -45,11 +45,12 @@
     if (!fetchedResultsController)
     {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Song"];
-        fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"SongsCache"];
+        fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"uppercaseFirstLetter" cacheName:nil];
         fetchedResultsController.delegate = self;
         
         NSError *error = nil;
+        
         if (![fetchedResultsController performFetch:&error])
             NSLog(@"Couldn't perform fetch. %@, %@", error, error.userInfo);
     }
@@ -171,7 +172,7 @@
 
 - (void)selectSongAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
     self.lyricsViewController.song = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
@@ -198,6 +199,21 @@
     [self configureCell:cell forIndexPath:indexPath];
     
     return cell;
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return self.fetchedResultsController.sectionIndexTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[self.fetchedResultsController.sections objectAtIndex:section] name];
 }
 
 #pragma mark - UITableViewDelegate
