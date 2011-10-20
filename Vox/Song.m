@@ -21,15 +21,19 @@
 - (NSString *)uppercaseFirstLetter
 {
     [self willAccessValueForKey:@"uppercaseFirstLetter"];
+    NSString *uppercaseTitle = [[self valueForKey:@"title"] uppercaseString];
+    __block NSString *stringToReturn = nil;
     
-    if (![self valueForKey:@"title"])
-        return @" ";
+    [uppercaseTitle enumerateSubstringsInRange:[uppercaseTitle rangeOfComposedCharacterSequenceAtIndex:0] options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        if ([substring rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].length)
+            stringToReturn = @"#";
+        else
+            stringToReturn = substring;
+    }];
     
-    NSString *uppercaseNameString = [[self valueForKey:@"title"] uppercaseString];
-    NSString *uppercaseLetter = [uppercaseNameString substringWithRange:[uppercaseNameString rangeOfComposedCharacterSequenceAtIndex:0]];
     [self didAccessValueForKey:@"uppercaseFirstLetter"];
     
-    return uppercaseLetter;
+    return stringToReturn;
 }
 
 @end
