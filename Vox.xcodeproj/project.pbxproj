@@ -25,6 +25,7 @@
 		4D628954144C220800E66BD7 /* TextSizeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D628952144C220800E66BD7 /* TextSizeButton.png */; };
 		4D628957144C382A00E66BD7 /* EditSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628956144C382A00E66BD7 /* EditSongViewController.m */; };
 		4D62895A144C3A8900E66BD7 /* NSManagedObject+IsNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */; };
+		4DB70C1B144FD2E800C73691 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB70C1A144FD2E700C73691 /* PlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,8 @@
 		4D628958144C3A8900E66BD7 /* NSManagedObject+IsNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+IsNew.h"; sourceTree = "<group>"; };
 		4D628959144C3A8900E66BD7 /* NSManagedObject+IsNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+IsNew.m"; sourceTree = "<group>"; };
 		4DB70C13144F940300C73691 /* Vox 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Vox 2.xcdatamodel"; sourceTree = "<group>"; };
+		4DB70C19144FD2E700C73691 /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceholderTextView.h; path = ../PlaceholderTextView.h; sourceTree = "<group>"; };
+		4DB70C1A144FD2E700C73691 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceholderTextView.m; path = ../PlaceholderTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 		4D628924144BD83700E66BD7 /* Vox */ = {
 			isa = PBXGroup;
 			children = (
+				4DB70C19144FD2E700C73691 /* PlaceholderTextView.h */,
+				4DB70C1A144FD2E700C73691 /* PlaceholderTextView.m */,
 				4D628951144C220800E66BD7 /* AlbumPlaceholder.png */,
 				4D628952144C220800E66BD7 /* TextSizeButton.png */,
 				4D62892D144BD83700E66BD7 /* AppDelegate.h */,
@@ -217,6 +222,7 @@
 				4D62894C144C11EA00E66BD7 /* SongCell.m in Sources */,
 				4D628957144C382A00E66BD7 /* EditSongViewController.m in Sources */,
 				4D62895A144C3A8900E66BD7 /* NSManagedObject+IsNew.m in Sources */,
+				4DB70C1B144FD2E800C73691 /* PlaceholderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

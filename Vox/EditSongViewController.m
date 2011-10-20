@@ -9,6 +9,7 @@
 #import "EditSongViewController.h"
 #import "Song.h"
 #import "Artist.h"
+#import "PlaceholderTextView.h"
 
 @interface EditSongViewController ()
 

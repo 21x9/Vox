@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Song;
+@class PlaceholderTextView;
 
 typedef void (^EditSongViewControllerSaveBlock)(Song *song);
 typedef void (^EditSongViewControllerCancelBlock)();
@@ -19,7 +20,7 @@ typedef void (^EditSongViewControllerCancelBlock)();
 @property (weak, nonatomic) IBOutlet UIImageView *albumArtImageView;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *artistTextField;
-@property (weak, nonatomic) IBOutlet UITextView *lyricsTextView;
+@property (weak, nonatomic) IBOutlet PlaceholderTextView *lyricsTextView;
 @property (copy, nonatomic) EditSongViewControllerSaveBlock saveBlock;
 @property (copy, nonatomic) EditSongViewControllerCancelBlock cancelBlock;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
