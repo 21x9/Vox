@@ -19,6 +19,7 @@
 
 - (void)populateUI;
 - (void)updateSaveButtonStatus;
+- (Artist *)artistWithName:(NSString *)artistName;
 
 @end
 
@@ -102,7 +103,6 @@
     __weak EditSongViewController *weakSelf = self;
     
     self.artistsViewController.selectedArtistBlock = ^(Artist *artist) {
-        weakSelf.song.artist = artist;
         weakSelf.artistTextField.text = artist.name;
         [weakSelf.artistsPopover dismissPopoverAnimated:YES];
         weakSelf.artistsPopover = nil;
@@ -136,29 +136,29 @@
 {
     [self.view endEditing:NO];
     self.song.title = self.titleTextField.text;
-    
-    if (!self.song.artist || [self.song.artist.name caseInsensitiveCompare:self.artistTextField.text] != NSOrderedSame)
-    {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Artist"];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name like[cd] %@", self.artistTextField.text];
-        fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
-        NSError *error = nil;
-        NSArray *matchingArtists = [self.song.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
-        if (!matchingArtists)
-            NSLog(@"Couldn't perform fetch request for matching artists. %@, %@", error, error.userInfo);
-        
-        if (!matchingArtists.count)
-        {
-            self.song.artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
-            self.song.artist.name = [self.artistTextField.text capitalizedString];
-        }
-        else
-            self.song.artist = [matchingArtists objectAtIndex:0];
-    }
-    
+    self.song.artist = [self artistWithName:self.artistTextField.text];
     self.song.lyrics = self.lyricsTextView.text;
     self.saveBlock(self.song);
+}
+
+- (Artist *)artistWithName:(NSString *)artistName
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Artist"];
+    request.includesSubentities = NO;
+    request.predicate = [NSPredicate predicateWithFormat:@"name like[cd] %@", artistName];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    
+    NSError *error = nil;
+    NSArray *artists = [self.song.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (!artists.count)
+    {
+        Artist *artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.song.managedObjectContext];
+        artist.name = artistName;
+        return artist;
+    }
+    
+    return [artists objectAtIndex:0];
 }
 
 - (IBAction)cancel:(id)sender
