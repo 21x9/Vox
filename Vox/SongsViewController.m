@@ -26,6 +26,7 @@
 - (void)editSong:(Song *)aSong;
 - (void)selectSongAtIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath;
+- (void)updateAlbumArtForSong:(Song *)aSong;
 
 @end
 
@@ -124,7 +125,6 @@
 - (void)viewDidUnload
 {
     self.addSongButton = nil;
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     
     [super viewDidUnload];
@@ -141,7 +141,7 @@
 {
     UIBarButtonItem *buttonItem = nil;
     
-    if (!self.editingSong)
+    if (!self.editingSong && self.fetchedResultsController.sections.count)
         buttonItem = self.editButtonItem;
     
     [self.navigationItem setLeftBarButtonItem:buttonItem animated:YES];
@@ -171,19 +171,7 @@
             NSLog(@"Couldn't save song. %@, %@", error, error.userInfo);
         
         [self selectSongAtIndexPath:[self.fetchedResultsController indexPathForObject:song]];
-        
-        if (!song.albumArt)
-        {
-            AlbumArtSearch *search = [[AlbumArtSearch alloc] init];
-            [search searchAlbumArtForSong:song completionBlock:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSError *error = nil;
-                    
-                    if (![self.managedObjectContext save:&error])
-                        NSLog(@"Couldn't save album art for song. %@, %@", error, error.userInfo);
-                });
-            }];
-        }
+        [self updateAlbumArtForSong:song];
     };
     esvc.cancelBlock = ^{
         self.editingSong = NO;
@@ -203,10 +191,6 @@
 {
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
     Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    if (!song)
-        return;
-    
     self.lyricsViewController.song = song;
 }
 
@@ -214,21 +198,21 @@
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
     Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    if (!song.albumArt)
-    {
-        AlbumArtSearch *search = [[AlbumArtSearch alloc] init];
-        [search searchAlbumArtForSong:song completionBlock:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSError *error = nil;
-                
-                if (![self.managedObjectContext save:&error])
-                    NSLog(@"Couldn't save artwork. %@, %@", error, error.userInfo);
-            });
-        }];
-    }
-    
+    [self updateAlbumArtForSong:song];    
     cell.song = song;
+}
+
+- (void)updateAlbumArtForSong:(Song *)aSong
+{
+    if (aSong.albumArt)
+        return;
+    
+    AlbumArtSearch *search = [[AlbumArtSearch alloc] init];
+    [search searchAlbumArtForSong:aSong completionBlock:^{
+        [self.managedObjectContext performBlock:^{
+            [self.managedObjectContext save:nil];
+        }];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -333,7 +317,8 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-    //[self selectSongAtIndexPath:self.selectedIndexPath];
+    [self updateLeftBarButtonState];
+    [self selectSongAtIndexPath:self.selectedIndexPath];
 }
 
 @end
