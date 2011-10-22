@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^AlbumArtSearchCompletionBlock)();
+typedef void (^AlbumArtSearchCompletionBlock)(NSData *imageData);
 
 @class Song;
 

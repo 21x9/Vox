@@ -22,6 +22,10 @@
 {
     [self willAccessValueForKey:@"uppercaseFirstLetter"];
     NSString *uppercaseTitle = [[self valueForKey:@"title"] uppercaseString];
+    
+    if (!uppercaseTitle)
+        return @" ";
+    
     __block NSString *stringToReturn = nil;
     
     [uppercaseTitle enumerateSubstringsInRange:[uppercaseTitle rangeOfComposedCharacterSequenceAtIndex:0] options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {

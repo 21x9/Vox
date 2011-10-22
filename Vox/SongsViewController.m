@@ -18,7 +18,6 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) LyricsViewController *lyricsViewController;
-@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 @property (assign, nonatomic) BOOL editingSong;
 
 - (void)updateLeftBarButtonState;
@@ -39,7 +38,6 @@
 
 @synthesize fetchedResultsController;
 @synthesize lyricsViewController;
-@synthesize selectedIndexPath;
 @synthesize editingSong;
 
 #pragma mark - Getters
@@ -170,7 +168,6 @@
         if (![self.managedObjectContext save:&error])
             NSLog(@"Couldn't save song. %@, %@", error, error.userInfo);
         
-        [self selectSongAtIndexPath:[self.fetchedResultsController indexPathForObject:song]];
         [self updateAlbumArtForSong:song];
     };
     esvc.cancelBlock = ^{
@@ -189,6 +186,12 @@
 
 - (void)selectSongAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (!indexPath)
+    {
+        self.lyricsViewController.song = nil;
+        return;
+    }
+    
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
     Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
     self.lyricsViewController.song = song;
@@ -198,7 +201,6 @@
 - (void)configureCell:(SongCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
     Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self updateAlbumArtForSong:song];    
     cell.song = song;
 }
 
@@ -208,10 +210,14 @@
         return;
     
     AlbumArtSearch *search = [[AlbumArtSearch alloc] init];
-    [search searchAlbumArtForSong:aSong completionBlock:^{
-        [self.managedObjectContext performBlock:^{
-            [self.managedObjectContext save:nil];
-        }];
+    [search searchAlbumArtForSong:aSong completionBlock:^(NSData *imageData) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            aSong.albumArt = imageData;
+            NSError *error = nil;
+            
+            if (![self.managedObjectContext save:&error])
+                NSLog(@"Couldn't save album art.");
+        });
     }];
 }
 
@@ -260,6 +266,10 @@
     if (editingStyle != UITableViewCellEditingStyleDelete)
         return;
     
+    Song *songToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    // IMPORTANT: This line is only necessary because of a bug in Core Data on 5.0. We need to turn the object into a fault to get the reference to the external storage location to update before being deleted.
+    [self.managedObjectContext refreshObject:songToDelete mergeChanges:NO];
     [self.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     NSError *error = nil;
     
@@ -293,11 +303,9 @@
     {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            self.selectedIndexPath = newIndexPath;
             break;
             
         case NSFetchedResultsChangeDelete:
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
@@ -306,10 +314,7 @@
             break;
             
         case NSFetchedResultsChangeMove:
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            self.selectedIndexPath = newIndexPath;
             break;
     }
 }
@@ -318,7 +323,6 @@
 {
     [self.tableView endUpdates];
     [self updateLeftBarButtonState];
-    [self selectSongAtIndexPath:self.selectedIndexPath];
 }
 
 @end
