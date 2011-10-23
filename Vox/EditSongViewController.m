@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) ArtistsViewController *artistsViewController;
 @property (strong, nonatomic) UIPopoverController *artistsPopover;
+@property (strong, nonatomic) Artist *selectedArtist;
 
 - (void)populateUI;
 - (void)updateSaveButtonStatus;
@@ -38,6 +39,7 @@
 
 @synthesize artistsViewController;
 @synthesize artistsPopover;
+@synthesize selectedArtist;
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
@@ -103,7 +105,7 @@
     __weak EditSongViewController *weakSelf = self;
     
     self.artistsViewController.selectedArtistBlock = ^(Artist *artist) {
-        weakSelf.artistTextField.text = artist.name;
+        weakSelf.selectedArtist = artist;
         [weakSelf.artistsPopover dismissPopoverAnimated:YES];
         weakSelf.artistsPopover = nil;
     };
@@ -136,13 +138,16 @@
 {
     [self.view endEditing:NO];
     self.song.title = self.titleTextField.text;
-    self.song.artist = [self artistWithName:self.artistTextField.text];
+    self.song.artist = self.selectedArtist;
     self.song.lyrics = self.lyricsTextView.text;
     self.saveBlock(self.song);
 }
 
 - (Artist *)artistWithName:(NSString *)artistName
 {
+    if (!artistName)
+        return nil;
+    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Artist"];
     request.includesSubentities = NO;
     request.predicate = [NSPredicate predicateWithFormat:@"name like[cd] %@", artistName];
@@ -168,6 +173,9 @@
     if (!self.song.title)
         [self.song.managedObjectContext deleteObject:self.song];
     
+    if (self.selectedArtist && !self.selectedArtist.songs.count)
+        [self.song.managedObjectContext deleteObject:self.selectedArtist];
+    
     self.cancelBlock();
 }
 
@@ -178,8 +186,13 @@
     if (sender != self.artistTextField)
         return;
     
-    if (!self.artistsPopover)
+    if (!self.artistsPopover && sender.text.length)
         [self performSegueWithIdentifier:@"ShowArtists" sender:self];
+    else if (self.artistsPopover && !sender.text.length)
+    {
+        [self.artistsPopover dismissPopoverAnimated:YES];
+        self.artistsPopover = nil;
+    }
     
     self.artistsViewController.searchFilter = self.artistTextField.text;
 }
@@ -190,6 +203,9 @@
     if (textField != self.artistTextField)
         return;
     
+    if (!textField.text.length)
+        return;
+    
     [self performSegueWithIdentifier:@"ShowArtists" sender:nil];
 }
 
@@ -197,6 +213,9 @@
 {
     [self.artistsPopover dismissPopoverAnimated:YES];
     self.artistsPopover = nil;
+    
+    if (textField == self.artistTextField && !self.selectedArtist)
+        self.selectedArtist = [self artistWithName:self.artistTextField.text];
 }
 
 #pragma mark - UITextViewDelegate

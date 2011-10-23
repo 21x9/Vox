@@ -56,14 +56,7 @@
         self.filteredArtists = self.allArtists;
     else
         self.filteredArtists = [self.allArtists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name beginswith[cd] %@", searchFilter]];
-}
-
-- (void)setFilteredArtists:(NSArray *)newFilteredArtists
-{
-    if (filteredArtists == newFilteredArtists)
-        return;
     
-    filteredArtists = newFilteredArtists;
     [self.tableView reloadData];
 }
 
@@ -88,11 +81,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.filteredArtists.count;
+    return MAX(self.filteredArtists.count, 1);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (!self.filteredArtists.count)
+    {
+        UITableViewCell *addArtistCell = [self.tableView dequeueReusableCellWithIdentifier:@"AddArtistCell"];
+        addArtistCell.textLabel.text = [NSString stringWithFormat:@"Add \"%@\"...", self.searchFilter];
+        return addArtistCell;
+    }
+    
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ArtistCell"];
     Artist *artist = [self.filteredArtists objectAtIndex:indexPath.row];
     cell.textLabel.text = artist.name;
@@ -106,7 +106,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Artist *artist = [self.filteredArtists objectAtIndex:indexPath.row];
+    Artist *artist = nil;
+    
+    if (!self.filteredArtists.count)
+    {
+        artist = [NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.managedObjectContext];
+        artist.name = [self.searchFilter capitalizedString];
+        self.selectedArtistBlock(artist);
+        return;
+    }
+    
+    artist = [self.filteredArtists objectAtIndex:indexPath.row];
     self.selectedArtistBlock(artist);
 }
 
