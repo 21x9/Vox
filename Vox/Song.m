@@ -40,4 +40,13 @@
     return stringToReturn;
 }
 
+- (void)prepareForDeletion
+{
+    if (self.artist.songs.count == 1)
+    {
+        [self.managedObjectContext deleteObject:self.artist];
+        [self.managedObjectContext save:nil];
+    }
+}
+
 @end
