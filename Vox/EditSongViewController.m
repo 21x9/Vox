@@ -218,6 +218,16 @@
         self.selectedArtist = [self artistWithName:self.artistTextField.text];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.titleTextField)
+        [self.artistTextField becomeFirstResponder];
+    else if (textField == self.artistTextField)
+        [self.lyricsTextView becomeFirstResponder];
+    
+    return YES;
+}
+
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView
 {

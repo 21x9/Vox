@@ -108,6 +108,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="textFieldEditingChanged:" destination="EYH-0a-dbx" eventType="editingChanged" id="7jT-W1-BmE"/>
+                                    <outlet property="delegate" destination="EYH-0a-dbx" id="cLx-lA-hZ8"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Artist" minimumFontSize="17" id="bhY-gO-iXL">
