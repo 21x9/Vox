@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) LyricsViewController *lyricsViewController;
 @property (assign, nonatomic) BOOL editingSong;
+@property (strong, nonatomic) NSIndexPath *indexPathToSelect;
 
 - (void)updateLeftBarButtonState;
 - (void)updateRightBarButtonState;
@@ -39,6 +40,7 @@
 @synthesize fetchedResultsController;
 @synthesize lyricsViewController;
 @synthesize editingSong;
+@synthesize indexPathToSelect;
 
 #pragma mark - Getters
 - (NSFetchedResultsController *)fetchedResultsController
@@ -303,6 +305,7 @@
     {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            self.indexPathToSelect = newIndexPath;
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -311,10 +314,13 @@
             
         case NSFetchedResultsChangeUpdate:
             [self configureCell:(SongCell *)[self.tableView cellForRowAtIndexPath:indexPath] forIndexPath:indexPath];
+            self.indexPathToSelect = indexPath;
             break;
             
         case NSFetchedResultsChangeMove:
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            self.indexPathToSelect = newIndexPath;
             break;
     }
 }
@@ -323,6 +329,7 @@
 {
     [self.tableView endUpdates];
     [self updateLeftBarButtonState];
+    [self selectSongAtIndexPath:self.indexPathToSelect];
 }
 
 @end
