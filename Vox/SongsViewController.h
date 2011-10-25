@@ -10,7 +10,7 @@
 
 @interface SongsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addSongButton;
 
 - (IBAction)addSong;

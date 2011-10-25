@@ -12,7 +12,7 @@
 
 @interface LyricsViewController ()
 
-@property (nonatomic, strong) UIBarButtonItem *textOptionsButton;
+@property (strong, nonatomic) UIBarButtonItem *textOptionsButton;
 
 - (void)configureUI;
 
