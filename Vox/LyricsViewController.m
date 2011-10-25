@@ -55,7 +55,7 @@
 {
     if (!self.song.title)
     {
-        self.editSongButton.enabled = NO;
+        self.navigationItem.rightBarButtonItem = nil;
         self.songTitleLabel.text = NSLocalizedString(@"No Song Selected", @"No Song Selected");
         self.artistNameLabel.text = NSLocalizedString(@"Add or select a song to get started", @"Add or select a song to get started");
         self.lyricsTextView.text = nil;
@@ -63,7 +63,7 @@
         return;
     }
     
-    self.editSongButton.enabled = YES;
+    self.navigationItem.rightBarButtonItem = self.editSongButton;
     self.songTitleLabel.text = self.song.title;
     self.artistNameLabel.text = self.song.artist.name;
     self.lyricsTextView.text = self.song.lyrics;
@@ -83,7 +83,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
+    [self configureUI];
     [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self configureUI]; 
