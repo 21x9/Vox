@@ -70,11 +70,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z43-SQ-Fxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="EditSongViewController" id="EYH-0a-dbx" customClass="EditSongViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9JS-16-eqi">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="HIr-WH-UnA" customClass="PlaceholderTextView">
-                                <rect key="frame" x="10" y="185" width="758" height="819"/>
+                                <rect key="frame" x="10" y="141" width="758" height="819"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -83,26 +83,8 @@
                                     <outlet property="delegate" destination="EYH-0a-dbx" id="X8R-Am-Djx"/>
                                 </connections>
                             </textView>
-                            <navigationBar contentMode="scaleToFill" id="Zop-HK-cxZ">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="New Song" id="WtU-rc-tkc">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mRn-Ob-W5t">
-                                            <connections>
-                                                <action selector="cancel:" destination="EYH-0a-dbx" id="giI-LB-kIw"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bhP-iR-MFz">
-                                            <connections>
-                                                <action selector="save:" destination="EYH-0a-dbx" id="DDa-3Q-f9i"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Song Title" minimumFontSize="17" id="pD4-Fs-eho">
-                                <rect key="frame" x="140" y="85" width="608" height="34"/>
+                                <rect key="frame" x="140" y="41" width="608" height="34"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -112,7 +94,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Artist" minimumFontSize="17" id="bhY-gO-iXL">
-                                <rect key="frame" x="140" y="121" width="608" height="22"/>
+                                <rect key="frame" x="140" y="77" width="608" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -122,17 +104,30 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AlbumPlaceholder.png" id="Ldr-ja-w3w">
-                                <rect key="frame" x="20" y="64" width="100" height="100"/>
+                                <rect key="frame" x="20" y="20" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem systemItem="cancel" id="mRn-Ob-W5t">
+                            <connections>
+                                <action selector="cancel:" destination="EYH-0a-dbx" id="giI-LB-kIw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="save" id="bhP-iR-MFz">
+                            <connections>
+                                <action selector="save:" destination="EYH-0a-dbx" id="DDa-3Q-f9i"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="albumArtImageView" destination="Ldr-ja-w3w" id="g46-bL-AhE"/>
                         <outlet property="artistTextField" destination="bhY-gO-iXL" id="BsX-MU-v2k"/>
+                        <outlet property="cancelButton" destination="mRn-Ob-W5t" id="y72-eO-BFK"/>
                         <outlet property="lyricsTextView" destination="HIr-WH-UnA" id="SDV-aY-VhO"/>
                         <outlet property="saveButton" destination="bhP-iR-MFz" id="Jxf-ap-l4c"/>
                         <outlet property="titleTextField" destination="pD4-Fs-eho" id="ugr-Ho-612"/>
@@ -303,6 +298,51 @@
     <resources>
         <image name="AlbumPlaceholder.png" width="90" height="90"/>
     </resources>
+    <classes>
+        <class className="ArtistsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistsViewController.h"/>
+        </class>
+        <class className="EditSongViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSongViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="save:"/>
+                <relationship kind="action" name="textFieldEditingChanged:" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="artistTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="lyricsTextView" candidateClass="PlaceholderTextView"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="titleTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="LyricsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LyricsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editSong:"/>
+                <relationship kind="outlet" name="albumArtImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="artistNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="editSongButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="flexibleSpace" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="lyricsTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="songTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="PlaceholderTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceholderTextView.h"/>
+        </class>
+        <class className="SongCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SongCell.h"/>
+        </class>
+        <class className="SongsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SongsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addSong"/>
+                <relationship kind="outlet" name="addSongButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

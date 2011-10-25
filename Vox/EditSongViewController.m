@@ -36,6 +36,7 @@
 @synthesize saveBlock;
 @synthesize cancelBlock;
 @synthesize saveButton;
+@synthesize cancelButton;
 
 @synthesize artistsViewController;
 @synthesize artistsPopover;
@@ -45,7 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
     [self populateUI];
     [self updateSaveButtonStatus];
     
@@ -114,6 +114,10 @@
 #pragma mark - UI Helpers
 - (void)populateUI
 {
+    self.title = NSLocalizedString(@"Edit Song", @"Edit Song");
+    self.navigationItem.leftBarButtonItem = self.cancelButton;
+    self.navigationItem.rightBarButtonItem = self.saveButton;
+    
     self.titleTextField.text = self.song.title;
     self.artistTextField.text = self.song.artist.name;
     self.lyricsTextView.text = self.song.lyrics;

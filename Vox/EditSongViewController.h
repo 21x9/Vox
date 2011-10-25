@@ -24,6 +24,7 @@ typedef void (^EditSongViewControllerCancelBlock)();
 @property (copy, nonatomic) EditSongViewControllerSaveBlock saveBlock;
 @property (copy, nonatomic) EditSongViewControllerCancelBlock cancelBlock;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
