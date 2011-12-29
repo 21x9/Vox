@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4D1CB76914501A2A00F8F9F0 /* AlbumArtSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CB76814501A2A00F8F9F0 /* AlbumArtSearch.m */; };
+		4D2047CB14576A2300711829 /* interstellarapps.Vox 2011-10-25 15.04.31.671.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = 4D2047CA14576A2300711829 /* interstellarapps.Vox 2011-10-25 15.04.31.671.xcappdata */; };
+		4D2047CD14576D6500711829 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2047CC14576D6500711829 /* Icon.png */; };
+		4D2047CF14576DEE00711829 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2047CE14576DEE00711829 /* Default-Landscape~ipad.png */; };
+		4D2047D114576FBC00711829 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D2047D014576FBC00711829 /* Default-Portrait~ipad.png */; };
 		4D62891D144BD83700E66BD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D62891C144BD83700E66BD7 /* UIKit.framework */; };
 		4D62891F144BD83700E66BD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D62891E144BD83700E66BD7 /* Foundation.framework */; };
 		4D628921144BD83700E66BD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D628920144BD83700E66BD7 /* CoreGraphics.framework */; };
@@ -33,6 +37,10 @@
 /* Begin PBXFileReference section */
 		4D1CB76714501A2A00F8F9F0 /* AlbumArtSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumArtSearch.h; sourceTree = "<group>"; };
 		4D1CB76814501A2A00F8F9F0 /* AlbumArtSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumArtSearch.m; sourceTree = "<group>"; };
+		4D2047CA14576A2300711829 /* interstellarapps.Vox 2011-10-25 15.04.31.671.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "interstellarapps.Vox 2011-10-25 15.04.31.671.xcappdata"; sourceTree = "<group>"; };
+		4D2047CC14576D6500711829 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4D2047CE14576DEE00711829 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		4D2047D014576FBC00711829 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		4D628918144BD83700E66BD7 /* Vox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D62891C144BD83700E66BD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D62891E144BD83700E66BD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,6 +95,9 @@
 		4D62890D144BD83700E66BD7 = {
 			isa = PBXGroup;
 			children = (
+				4D2047D014576FBC00711829 /* Default-Portrait~ipad.png */,
+				4D2047CE14576DEE00711829 /* Default-Landscape~ipad.png */,
+				4D2047CC14576D6500711829 /* Icon.png */,
 				4D628924144BD83700E66BD7 /* Vox */,
 				4D62891B144BD83700E66BD7 /* Frameworks */,
 				4D628919144BD83700E66BD7 /* Products */,
@@ -115,6 +126,7 @@
 		4D628924144BD83700E66BD7 /* Vox */ = {
 			isa = PBXGroup;
 			children = (
+				4D2047CA14576A2300711829 /* interstellarapps.Vox 2011-10-25 15.04.31.671.xcappdata */,
 				4DB70C19144FD2E700C73691 /* PlaceholderTextView.h */,
 				4DB70C1A144FD2E700C73691 /* PlaceholderTextView.m */,
 				4D628951144C220800E66BD7 /* AlbumPlaceholder.png */,
@@ -212,6 +224,10 @@
 				4D62893D144C0A1000E66BD7 /* Storyboard.storyboard in Resources */,
 				4D628953144C220800E66BD7 /* AlbumPlaceholder.png in Resources */,
 				4D628954144C220800E66BD7 /* TextSizeButton.png in Resources */,
+				4D2047CB14576A2300711829 /* interstellarapps.Vox 2011-10-25 15.04.31.671.xcappdata in Resources */,
+				4D2047CD14576D6500711829 /* Icon.png in Resources */,
+				4D2047CF14576DEE00711829 /* Default-Landscape~ipad.png in Resources */,
+				4D2047D114576FBC00711829 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +337,41 @@
 			};
 			name = Release;
 		};
+		4DE0581714ABAE1C00FA343B /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mark Adams";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "85169916-5EF3-44E9-ADB8-E67946146993";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		4DE0581814ABAE1C00FA343B /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vox/Vox-Prefix.pch";
+				INFOPLIST_FILE = "Vox/Vox-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = AdHoc;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +380,7 @@
 			buildConfigurations = (
 				4D628933144BD83700E66BD7 /* Debug */,
 				4D628934144BD83700E66BD7 /* Release */,
+				4DE0581714ABAE1C00FA343B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -338,6 +390,7 @@
 			buildConfigurations = (
 				4D628936144BD83700E66BD7 /* Debug */,
 				4D628937144BD83700E66BD7 /* Release */,
+				4DE0581814ABAE1C00FA343B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

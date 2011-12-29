@@ -193,7 +193,7 @@
         self.lyricsViewController.song = nil;
         return;
     }
-    
+        
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
     Song *song = [self.fetchedResultsController objectAtIndexPath:indexPath];
     self.lyricsViewController.song = song;
